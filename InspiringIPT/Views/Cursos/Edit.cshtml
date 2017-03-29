@@ -1,0 +1,67 @@
+﻿@model InspiringIPT.Models.Cursos
+
+@{
+    ViewBag.Title = "Alterar o curso";
+}
+    
+<div class="row">
+
+    <div class="col-md-6">
+        @using (Html.BeginForm("Edit", "Cursos", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.CursoID)
+                @Html.HiddenFor(model => model.ImagePath)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TipoCurso, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TipoCurso, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TipoCurso, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Curso, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Curso, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Curso, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <fieldset>
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="editor-field">
+                            <input id="ImagePath" title="Upload de imagem" type="file" name="file" class="col-md-8" />
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" class="btn btn-warning" />
+                        @Html.ActionLink("Ver os Cursos", "Index", "", new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        <img class="img-responsive" src="~/Imags/122303_F_20101223043940.jpg" alt="">
+    </div>
+</div>
+

@@ -11,15 +11,58 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using InspiringIPT.Models;
+using System.Net;
+using System.Configuration;
+using System.Diagnostics;
+using SendGrid;
 
 namespace InspiringIPT
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            await configSendGridasync(message);
+        }
+
+        //PM> Install-Package Sendgrid -Version 6.3.4 para poder funcionar
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+
+            var myMessage = new SendGridMessage();
+            myMessage.AddTo(message.Destination);
+            myMessage.From = new System.Net.Mail.MailAddress(
+                                "arrua.afonso@gmail.com", "Inspiring IPT");
+            myMessage.Subject = message.Subject;
+            myMessage.Text = message.Body;
+            myMessage.Html = message.Body;
+
+            var credentials = new NetworkCredential(
+                       ConfigurationManager.AppSettings["mailAccount"],
+                       ConfigurationManager.AppSettings["mailPassword"]
+                       );
+
+            // Cria a Web transport para enviar email.
+            var transportWeb = new Web(credentials);
+            // Envia o E-mail
+            try
+            {
+                if (transportWeb != null)
+                {
+                    //envia a Mensagem
+                    await transportWeb.DeliverAsync(myMessage);
+                }
+                else
+                {
+                    //Falha ao enviar a mensagem
+                    Trace.TraceError("Falha ao criar Web transport.");
+                    await Task.FromResult(0);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.Message + "Sengrid não está a funcionar.");
+            }
         }
     }
 
@@ -40,7 +83,7 @@ namespace InspiringIPT
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -81,7 +124,7 @@ namespace InspiringIPT
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;

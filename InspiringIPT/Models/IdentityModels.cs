@@ -29,5 +29,10 @@ namespace InspiringIPT.Models
         {
             return new ApplicationDbContext();
         }
+        public System.Data.Entity.DbSet<InspiringIPT.Models.Alunos> Alunos { get; set; }
+        public System.Data.Entity.DbSet<InspiringIPT.Models.Cursos> Cursos { get; set; }
+
+
+
     }
 }
