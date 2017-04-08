@@ -8,6 +8,10 @@ namespace InspiringIPT.Models
 {
     public partial class Cursos
     {
+        public Cursos()
+        {
+            Alunos = new HashSet<Alunos>();
+        }
         [Key]
         public int CursoID { get; set; }
         [Display(Name = "Tipo do Curso")]
@@ -16,8 +20,9 @@ namespace InspiringIPT.Models
         public string Curso { get; set; }
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
-        [Display(Name = "Upload de Foto")]
-        public string ImagePath { get; set; }
+
+        public virtual ICollection<Alunos> Alunos { get; set; }
+       
 
     }
 }

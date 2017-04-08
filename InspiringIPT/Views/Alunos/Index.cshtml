@@ -1,0 +1,91 @@
+﻿@model IEnumerable<InspiringIPT.Models.Alunos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <p>
+        @*Cria link para criar um novo animal*@
+        @Html.ActionLink("Criar um novo Aluno", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Concelho)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contacto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HabAcademicas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InforCursos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AreasInteresse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacoes)
+            </th>
+           
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        /*Para cada Animal presente na lista,
+        constroi uma Linha Tabela*/
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Concelho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HabAcademicas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InforCursos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreasInteresse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacoes)
+            </td>
+            <td>
+                @*Constroi os elementos para as operações de editar, detalhar, apagar*@
+                @Html.ActionLink("Editar", "Edit", new { id=item.AlunoID }) |
+                @Html.ActionLink("Detalhes", "Details", new { id=item.AlunoID }) |
+                @Html.ActionLink("Apagar", "Delete", new { id=item.AlunoID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+

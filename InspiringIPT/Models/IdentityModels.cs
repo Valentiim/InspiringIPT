@@ -21,7 +21,7 @@ namespace InspiringIPT.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("name=DefaultConnection", throwIfV1Schema: false)
         {
         }
 
@@ -31,6 +31,7 @@ namespace InspiringIPT.Models
         }
         public System.Data.Entity.DbSet<InspiringIPT.Models.Alunos> Alunos { get; set; }
         public System.Data.Entity.DbSet<InspiringIPT.Models.Cursos> Cursos { get; set; }
+        public System.Data.Entity.DbSet<InspiringIPT.Models.Inscricao> Inscricao { get; set; }
 
 
 

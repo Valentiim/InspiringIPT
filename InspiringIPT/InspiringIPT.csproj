@@ -225,6 +225,7 @@
     <Compile Include="Models\Alunos.cs" />
     <Compile Include="Models\Cursos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Inscricao.cs" />
     <Compile Include="Models\Lista.cs" />
     <Compile Include="Models\ListaAlunos.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -267,20 +268,18 @@
     <Content Include="Imags\47_localizacao_big4.jpg" />
     <Content Include="Imags\autodromo-do-estoril.jpg" />
     <Content Include="Imags\bell-hotel-1.png" />
+    <Content Include="Imags\campus_ipt.jpg" />
+    <Content Include="Imags\cara_ipt2.jpg" />
     <Content Include="Imags\card_tenis_portugal_open_280115.jpg" />
     <Content Include="Imags\CasinoEstoril_01.jpg" />
     <Content Include="Imags\DEA5B951-4F63-4424-BCB8-AD9834644E7A.jpg" />
     <Content Include="Imags\eu.jpg" />
     <Content Include="Imags\ferias-mergulho-tenerife.jpg" />
-    <Content Include="Imags\IMG_3217.jpg" />
     <Content Include="Imags\lei.jpg" />
     <Content Include="Imags\LIS_Cascais-Tamariz_660x371_2.jpg" />
-    <Content Include="Imags\LSB.PALM4.HO.21-125697_0_0.jpg" />
     <Content Include="Imags\OB-CZ627_rhotel_F_20090121205606.jpg" />
     <Content Include="Imags\pansodan06.jpg" />
-    <Content Include="Imags\radisson-pool.jpg" />
     <Content Include="Imags\RV-AL095_PLAYLI_F_20130719185324.jpg" />
-    <Content Include="Imags\suite-vincci-porto-centro-hotel.jpg" />
     <Content Include="Imags\wallpaper.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -348,6 +347,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Alunos\Create.cshtml" />
+    <Content Include="Views\Alunos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

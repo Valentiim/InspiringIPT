@@ -11,6 +11,7 @@ namespace InspiringIPT.Controllers
 {
     public class AlunosController : Controller
     {
+        // Cria uma referência à BD
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Alunos
@@ -23,7 +24,7 @@ namespace InspiringIPT.Controllers
             return View(user);
         }
 
-
+        //permissão apenas para o utilizador "funcionário"
         [Authorize(Roles = "Funcionarios")]
         public ActionResult Listagem()
         {
@@ -55,11 +56,15 @@ namespace InspiringIPT.Controllers
         [Authorize(Roles = "Funcionarios")]
         public ActionResult Details(int? id)
         {
+            //se não for fornecido o id, não funciona
             if (id == null)
             {
                 return RedirectToAction("Index");
             }
+            //procurar pelo Aluno, cujo o ID foi fornecido
             Alunos alunos = db.Alunos.Find(id);
+
+            //se o animal não existe a página não é encontrada
             if (alunos == null)
             {
                 return RedirectToAction("Index");
@@ -70,18 +75,44 @@ namespace InspiringIPT.Controllers
         // GET: Alunos/Create
         public ActionResult Create()
         {
-            return PartialView();
+            //Se o código for executado é porque o modelo não é válido
+            //voltar a criar os dados do dropdown
+            ViewBag.curso = new SelectList(db.Cursos, "CursoID", "nome");
+
+            return View();
         }
+
+        public ActionResult Create([Bind(Include = "Animal_ID,nome,especie,raca,peso,dono")] Alunos Alunos)
+        {
+            //valida os dados recebidos com o modelo 
+            if (ModelState.IsValid)
+            {
+                db.Alunos.Add(Alunos);
+                //confirma a alteração
+                db.SaveChanges();
+                //redirecciona para a pagina de inicio
+                return RedirectToAction("Index");
+            }
+            //Se o código for executado é porque o modelo não é válido
+            //voltar a criar os dados do dropdown
+            ViewBag.curso = new SelectList(db.Cursos, "ClienteID", "nome", Alunos.curso);
+            return View(Alunos);
+        }
+
 
         // GET: Alunos/Edit/5
         [Authorize(Roles = "Funcionarios")]
         public ActionResult Edit(int? id)
         {
+            //se não for fornecido o id, não funciona
             if (id == null)
             {
                 return RedirectToAction("Index");
             }
+            //procurar pelo Aluno, cujo o ID foi fornecido
             Alunos alunos = db.Alunos.Find(id);
+
+            //se o animal não existe a página não é encontrada
             if (alunos == null)
             {
                 return RedirectToAction("Index");
@@ -99,11 +130,15 @@ namespace InspiringIPT.Controllers
         public ActionResult Edit([Bind(Include = "AlunoID,NomeCompleto,Concelho,Email,Contacto,Sexo,DataNascimento,HabAcademicas,InforCursos,AreasInteresse,Observacoes,UserID")] Alunos alunos)
         {
             TempData["cl"] = "Alterar Perfil";
+            //valida os dados recebidos com o modelo 
             if (ModelState.IsValid)
             {
                 TempData["clienteSuccess"] = "O seu perfil foi alterado com sucesso!";
+                //altera o estado do Obj da base da dados
                 db.Entry(alunos).State = EntityState.Modified;
+                //confirma a alteração
                 db.SaveChanges();
+                //redirecciona para a pagina de detalhes
                 return RedirectToAction("Details", new { id = alunos.AlunoID });
             }
             TempData["clienteErro"] = "Por favor! Verifique se os dados introduzidos estão corretos!";
@@ -117,7 +152,9 @@ namespace InspiringIPT.Controllers
             var userid = User.Identity.GetUserId();
             var user = (from c in db.Alunos where c.UserID == userid select c.AlunoID).Single();
             ViewBag.aluno = user;
+            //procurar pelo aluno, cujo o ID foi fornecido
             Alunos alunos = db.Alunos.Find(user);
+            //se o aluno não existe a página não é encontrada
             if (alunos == null)
             {
                 return RedirectToAction("Index", "Home");

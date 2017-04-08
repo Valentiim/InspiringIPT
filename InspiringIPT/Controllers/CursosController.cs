@@ -9,9 +9,11 @@ namespace InspiringIPT.Controllers
 {
     public class CursosController : Controller
     {
+          // Cria uma referência à BD
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Cursos      
+        // GET: Cursos  
+            
         public ActionResult Index()
         {
             return View(db.Cursos.OrderByDescending(m => m.Curso).ToList());
@@ -29,18 +31,11 @@ namespace InspiringIPT.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            var nomeIMG = (from q in db.Cursos where id == q.CursoID select q.ImagePath).Single();
-            if (nomeIMG == null)
-            {
-                ViewBag.img = "image-not-found.jpg";
-            }
-            else
-            {
-                ViewBag.img = nomeIMG;
-            }
-            return View(cursos);
-        }
 
+            { 
+                return View(cursos);
+            }
+        }
         // GET: Cursos/Create
         [Authorize(Roles = "Funcionarios")]
         public ActionResult Create()
@@ -54,17 +49,12 @@ namespace InspiringIPT.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Funcionarios")]
-        public ActionResult Create([Bind(Include = "CursoID,TipoCurso,Curso,Descricao,ImagePath")]Cursos cursos, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "CursoID,TipoCurso,Curso,Descricao")]Cursos cursos, HttpPostedFileBase file)
         {
-            TempData["AQ"] = "Tipo dos Cursos";
+            TempData["AQ"] = "Tipo do Curso";
             if (ModelState.IsValid)
             {
-                if (file != null)
-                {
-                    file.SaveAs(HttpContext.Server.MapPath("~/Images/")
-                                                          + file.FileName);
-                    cursos.ImagePath = file.FileName;
-                }
+               
                 db.Cursos.Add(cursos);
                 db.SaveChanges();
                 TempData["AQSuccess"] = "Tipo dos Cursos acrescentado com Sucesso!";
@@ -95,17 +85,12 @@ namespace InspiringIPT.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Funcionarios")]
-        public ActionResult Edit([Bind(Include = "CursoID,TipoCurso,Curso,Descricao,ImagePath")] Cursos cursos, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "CursoID,TipoCurso,Curso,Descricao")] Cursos cursos, HttpPostedFileBase file)
         {
-            TempData["AQ"] = "Tipo dos Cursos";
+            TempData["AQ"] = "Tipo do Curso";
             if (ModelState.IsValid)
             {
-                if (file != null)
-                {
-                    file.SaveAs(HttpContext.Server.MapPath("~/Images/")
-                                                          + file.FileName);
-                    cursos.ImagePath = file.FileName;
-                }
+                
                 db.Entry(cursos).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["AQSuccess"] = "Tipo dos Cursos alterado com Sucesso!";
