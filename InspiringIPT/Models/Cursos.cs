@@ -10,7 +10,7 @@ namespace InspiringIPT.Models
     {
         public Cursos()
         {
-            Alunos = new HashSet<Alunos>();
+            Inscricao = new HashSet<Inscricao>();
         }
         [Key]
         public int CursoID { get; set; }
@@ -21,7 +21,7 @@ namespace InspiringIPT.Models
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
-        public virtual ICollection<Alunos> Alunos { get; set; }
+        public virtual ICollection<Inscricao> Inscricao { get; set; }
        
 
     }

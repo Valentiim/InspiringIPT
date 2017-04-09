@@ -1,0 +1,78 @@
+﻿@model InspiringIPT.Models.Alunos
+
+@{
+    ViewBag.Title = "Informação do Aluno";
+}
+
+<div class="row">
+    <div class="col-md-6" style="text-align:justify">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NomeCompleto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NomeCompleto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Concelho)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Concelho) @Html.DisplayNameFor(model => model.Contacto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email) @Html.DisplayNameFor(model => model.DataNascimento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sexo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.HabAcademicas)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HabAcademicas)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.InforCursos)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.InforCursos)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AreasInteresse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AreasInteresse)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Observacoes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Observacoes)
+            </dd>
+        </dl>
+        <div class="col-md-offset-2">
+            @Html.ActionLink("Alterar dados do Aluno", "Edit", new { id = Model.AlunoID }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Ver Alunos", "Lista", "", new { @class = "btn btn - primary" })
+        </div>
+    </div>
+</div>

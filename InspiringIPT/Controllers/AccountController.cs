@@ -11,7 +11,7 @@ using Microsoft.Owin.Security;
 using InspiringIPT.Models;
 using InspiringIPT;
 
-namespace InspiringIPTomar.Controllers
+namespace InspiringIPT.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -88,8 +88,8 @@ namespace InspiringIPTomar.Controllers
                 {
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
                     //mensagem de Erro que aparece no Erro
-                    ViewBag.errorMessage = "Deverá confirmar a password no seu e-mail. "
-                              + "Enviamos neste Momento um novo pedido de Confirmação.";
+                    ViewBag.errorMessage = "Deverá de confirmar a password no seu e-mail. "
+                              + "Enviamos neste Momento um novo pedido se Confirmação.";
                     return View("Error");
                 }
             }
@@ -124,7 +124,7 @@ namespace InspiringIPTomar.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, Alunos a)
+        public async Task<ActionResult> Register(RegisterViewModel model, Alunos c)
         {
             TempData["Reg"] = "Registo";
             if (ModelState.IsValid)
@@ -137,17 +137,17 @@ namespace InspiringIPTomar.Controllers
                     var aluno = new Alunos
                     {
                         UserID = user.Id,
-                        NomeCompleto = a.NomeCompleto,
-                        Concelho = a.Concelho,
-                        Email = a.Email,
-                        Contacto = a.Contacto,
-                        Sexo = a.Sexo,
-                        DataNascimento = a.DataNascimento,
-                        HabAcademicas = a.HabAcademicas,
-                        InforCursos = a.InforCursos,
-                        AreasInteresse = a.AreasInteresse,
-                        Observacoes = a.Observacoes,
-
+                        NomeCompleto = c.NomeCompleto,
+                        Concelho = c.Concelho,
+                        Email = c.Email,
+                        Contacto = c.Contacto,
+                        Sexo = c.Sexo,
+                        DataNascimento = c.DataNascimento,
+                        HabAcademicas = c.HabAcademicas,
+                        InforCursos = c.InforCursos,
+                        AreasInteresse = c.AreasInteresse,
+                        Observacoes = c.Observacoes,        
+                        
                     };
                     //mantém a Sessão iniciada
                     //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -217,7 +217,7 @@ namespace InspiringIPTomar.Controllers
                 //gera link da passord7                
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 //Envia o email de Reset da password ao utilizador
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Clique <a href=\"" + callbackUrl + "\">aqui</a> para efectuar reset à password");
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Clique <a href=\"" + callbackUrl + "\">aqui</a> paea Efectuar Reset à password");
                 //Redireciona para a confirmação
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }

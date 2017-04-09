@@ -23,7 +23,7 @@ namespace InspiringIPT.Models
         public string Data_Nascimento { get; set; }
         [Display(Name = "Habilitações Académicas")]
         public string Habilitacoes { get; set; }
-        [Display(Name = "Informações sobre cursos")]
+        [Display(Name = "Informações cursos")]
         public string Informacoes { get; set; }
         [Display(Name = "Áreas de interesse")]
         public string Areas { get; set; }

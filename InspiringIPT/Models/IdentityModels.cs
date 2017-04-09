@@ -31,7 +31,8 @@ namespace InspiringIPT.Models
         }
         public System.Data.Entity.DbSet<InspiringIPT.Models.Alunos> Alunos { get; set; }
         public System.Data.Entity.DbSet<InspiringIPT.Models.Cursos> Cursos { get; set; }
-        public System.Data.Entity.DbSet<InspiringIPT.Models.Inscricao> Inscricao { get; set; }
+       
+        public virtual DbSet<Inscricao> Inscricao { get; set; }
 
 
 

@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using InspiringIPT.Models;
-using InspiringIPTomar.Controllers;
+using InspiringIPT.Controllers;
 
 namespace InspiringIPT.Controllers
 {
