@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -13,8 +9,8 @@ using Microsoft.Owin.Security;
 using InspiringIPT.Models;
 using System.Net;
 using System.Configuration;
-using System.Diagnostics;
 using SendGrid;
+using System.Diagnostics;
 
 namespace InspiringIPT
 {
@@ -25,7 +21,7 @@ namespace InspiringIPT
             await configSendGridasync(message);
         }
 
-        //PM> Install-Package Sendgrid -Version 6.3.4 para poder funcionar
+        // Use NuGet to install SendGrid (Basic C# client lib) 
         private async Task configSendGridasync(IdentityMessage message)
         {
 
