@@ -13,6 +13,7 @@ namespace InspiringIPT.Models
       
         [Key]
         public int AlunoID { get; set; }
+
         [Required]
         [Display(Name = "Nome Completo: ")]
         public string NomeCompleto { get; set; }

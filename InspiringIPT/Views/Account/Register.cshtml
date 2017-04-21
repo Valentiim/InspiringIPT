@@ -30,7 +30,7 @@
 </div>
 @using (Html.BeginForm("Inscrever", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <div class="row">
+    
         <div class="col-md-6">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -69,7 +69,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="form-group">

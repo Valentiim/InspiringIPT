@@ -359,6 +359,7 @@
     <Content Include="Imags\47_localizacao_big4.jpg" />
     <Content Include="Imags\autodromo-do-estoril.jpg" />
     <Content Include="Imags\bell-hotel-1.png" />
+    <Content Include="Imags\campos2.jpg" />
     <Content Include="Imags\campus_ipt.jpg" />
     <Content Include="Imags\cara_ipt2.jpg" />
     <Content Include="Imags\card_tenis_portugal_open_280115.jpg" />
@@ -443,10 +444,11 @@
     <Content Include="Views\Alunos\Details.cshtml" />
     <Content Include="Views\Alunos\Edit.cshtml" />
     <Content Include="Views\Alunos\Editar.cshtml" />
+    <Content Include="Views\Inscricao\Index.cshtml" />
+    <Content Include="Views\Inscricao\Lista.cshtml" />
+    <Content Include="Views\Inscricao\Details.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Inscricao\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

@@ -43,9 +43,11 @@ namespace InspiringIPT.Controllers
                 select new Lista
                 {
                     InscricaoID = r.InscricaoID,
-                    DataInscri = r.DataInscricao,
-                    Curso = q.TipoCurso,
                     Nome = c.NomeCompleto,
+                    Curso = q.TipoCurso,
+                    DataInscri = r.DataInscricao,
+                 
+              
                 };
 
             return View(reservas.ToList().OrderByDescending(r => r.InscricaoID));

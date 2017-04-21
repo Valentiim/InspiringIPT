@@ -1,0 +1,40 @@
+﻿@model InspiringIPT.Models.Inscricao
+
+@{
+    ViewBag.Title = "Detalhes da Inscrição";
+}
+
+<div>
+    <h4>Inscricao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInscricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInscricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlunoFK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlunoFK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CursoFK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CursoFK)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Alterar inscrição", "Edit", new { id = Model.InscricaoID }) |
+    @Html.ActionLink("Ver Inscrições", "Index")
+</p>
