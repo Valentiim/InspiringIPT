@@ -3,38 +3,45 @@
 @{
     ViewBag.Title = "Detalhes da Inscrição";
 }
+<div class="col-md-6">
+    <h2>Inscrição do Aluno</h2>
+    <table>
+        <tr>
+            <td></td>
+            <td>
+                <b>Inscrição</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>@Html.DisplayNameFor(model => model.DataInscricao):</b>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.DataInscricao)
+            </td>
 
-<div>
-    <h4>Inscricao</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DataInscricao)
-        </dt>
+        </tr>
+        <tr>
+            <td>
+                <b>Aluno: </b>
+            </td>
+            <td>
+                @ViewBag.nome @ViewBag.NomeCompleto
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.DataInscricao)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AlunoFK)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AlunoFK)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CursoFK)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CursoFK)
-        </dd>
-
-    </dl>
+        </tr>
+        <tr>
+            <td>
+                <b>@Html.DisplayNameFor(model => model.Cursos.TipoCurso): </b>
+            </td>
+            <td>
+                @ViewBag.tipo
+            </td>
+        </tr>
+    </table>
 </div>
-<p>
+<div class="col-md-offset-2">
     @Html.ActionLink("Alterar inscrição", "Edit", new { id = Model.InscricaoID }) |
     @Html.ActionLink("Ver Inscrições", "Index")
-</p>
+</div>
+
