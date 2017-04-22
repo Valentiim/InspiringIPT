@@ -39,6 +39,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Alunos<span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Inscrever", "CriarInscricao", "Inscricao")</li>
                             <li>@Html.ActionLink("Alterar Perfil", "Editar", "Alunos")</li>
                             <li>@Html.ActionLink("Alterar Password", "Index", "Manage")</li>
                         </ul>
@@ -49,9 +50,10 @@
                 @if (User.IsInRole("Funcionarios"))
                 {
                         <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administração<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Listar Alunos", "Lista", "Alunos")</li>
+                            <li>@Html.ActionLink("Alunos Inscritos", "Lista", "Inscricao")</li>
                             <li>@Html.ActionLink("Tipo do Curso", "Index", "Cursos")</li>
                         </ul>
                         </li>
@@ -78,7 +80,6 @@
     @Scripts.Render("~/Scripts/bootstrap-datetimepicker.js")
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/Scripts/Apoio.js")
-    @Scripts.Render("~/Scripts/jspdf.js")
-    @Scripts.Render("~/Scripts/pdfFromHTML.js")
+  
 </body>
 </html>
