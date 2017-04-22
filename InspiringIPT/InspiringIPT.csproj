@@ -444,9 +444,12 @@
     <Content Include="Views\Alunos\Details.cshtml" />
     <Content Include="Views\Alunos\Edit.cshtml" />
     <Content Include="Views\Alunos\Editar.cshtml" />
-    <Content Include="Views\Inscricao\Index.cshtml" />
     <Content Include="Views\Inscricao\Lista.cshtml" />
     <Content Include="Views\Inscricao\Details.cshtml" />
+    <Content Include="Views\Inscricao\Delete.cshtml" />
+    <Content Include="Views\Inscricao\Edit.cshtml" />
+    <Content Include="Views\Inscricao\ConsultarInscricao.cshtml" />
+    <Content Include="Views\Inscricao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

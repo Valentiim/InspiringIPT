@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InspiringIPT.Models
 {
@@ -42,10 +40,8 @@ namespace InspiringIPT.Models
         public string AreasInteresse { get; set; }
         [Display(Name = "Observações: ")]
         public string Observacoes { get; set; }
-
         public string UserID { get; set; }
-
-        public int curso { get; set; }
+        public int Curso { get; set; }
 
        //herança
         public virtual ICollection<Inscricao> Inscricao { get; set; }

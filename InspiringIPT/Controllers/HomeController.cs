@@ -10,11 +10,12 @@ namespace InspiringIPT.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index()
 
+        public ActionResult Index()
         {
             return View(db.Cursos.ToList().OrderBy(n => n.Curso).Take(1));
         }
+
         //Home/About
         public ActionResult About()
         {

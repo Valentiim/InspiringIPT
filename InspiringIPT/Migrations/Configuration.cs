@@ -9,7 +9,7 @@ namespace InspiringIPT.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = true;//permite a actualização automática da BD
         }
 
         protected override void Seed(InspiringIPT.Models.ApplicationDbContext context)
