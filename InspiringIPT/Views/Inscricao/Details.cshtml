@@ -1,10 +1,11 @@
 ﻿@model InspiringIPT.Models.Inscricao
 
 @{
-    ViewBag.Title = "Detalhes";
+    ViewBag.Title = "Detalhes da incrição";
 }
 <div class="row">
     <div class="col-md-6">
+
         <h2>Inspiring IPTomar</h2>
         <table>
             <tr>
@@ -22,6 +23,11 @@
                 </td>
             </tr>
             <tr>
+               
+            </tr>
+            <tr>
+            </tr>
+            <tr>
                 <td>
                     <b>Aluno: </b>
                 </td>
@@ -37,12 +43,15 @@
                     @ViewBag.tipo
                 </td>
             </tr>
-
+            <tr>
+              
+            </tr>
         </table>
+
+        <br />
+        <div class="col-md-offset-2">
+            @Html.ActionLink("Alterar Inscrição", "Edit", new { id = Model.InscricaoID }) |
+            @Html.ActionLink("Ver inscriçoes", "Index")
+        </div>
     </div>
-   
-    <div class="col-md-offset-2">
-        @Html.ActionLink("Alterar Inscrição", "Edit", new { id = Model.InscricaoID }) |
-        @Html.ActionLink("Ver Inscrição", "Index")
-    </div>
-    </div>
+</div>

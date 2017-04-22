@@ -51,16 +51,14 @@ namespace InspiringIPT.Controllers
         [Authorize(Roles = "Funcionarios")]
         public ActionResult Create([Bind(Include = "CursoID,TipoCurso,Curso,Descricao")]Cursos cursos, HttpPostedFileBase file)
         {
-            TempData["AQ"] = "Tipo do Curso";
+            
             if (ModelState.IsValid)
             {
                
                 db.Cursos.Add(cursos);
                 db.SaveChanges();
-                TempData["AQSuccess"] = "Tipo dos Cursos acrescentado com Sucesso!";
                 return RedirectToAction("Index");
             }
-            TempData["AQErro"] = "Verifique se introduziu bem os dados!";
             return View(cursos);
         }
         [Authorize(Roles = "Funcionarios")]
@@ -87,16 +85,13 @@ namespace InspiringIPT.Controllers
         [Authorize(Roles = "Funcionarios")]
         public ActionResult Edit([Bind(Include = "CursoID,TipoCurso,Curso,Descricao")] Cursos cursos, HttpPostedFileBase file)
         {
-            TempData["AQ"] = "Tipo do Curso";
             if (ModelState.IsValid)
             {
                 
                 db.Entry(cursos).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["AQSuccess"] = "Tipo dos Cursos alterado com Sucesso!";
                 return RedirectToAction("Index");
             }
-            TempData["AQErro"] = "Verifique se introduziu bem os dados!";
             return View(cursos);
         }
         protected override void Dispose(bool disposing)

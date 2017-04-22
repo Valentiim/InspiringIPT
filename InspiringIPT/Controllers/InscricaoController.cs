@@ -1,13 +1,11 @@
-﻿using System;
+﻿using InspiringIPT.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using InspiringIPT.Models;
-using Microsoft.AspNet.Identity;
 
 namespace InspiringIPT.Controllers
 {
@@ -16,6 +14,7 @@ namespace InspiringIPT.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Inscricao
+        [Authorize]
         public ActionResult Index()
         {
             var userid = User.Identity.GetUserId();
@@ -29,11 +28,12 @@ namespace InspiringIPT.Controllers
                     InscricaoID = r.InscricaoID,
                     DataInscri = r.DataInscricao,
                     Curso = q.TipoCurso
-                 
+
                 };
             var lista = inscricoes.ToList().OrderByDescending(r => r.InscricaoID);
             return View(lista);
         }
+
         //Lista
         [Authorize(Roles = "Funcionarios")]
         public ActionResult Lista()
@@ -46,15 +46,16 @@ namespace InspiringIPT.Controllers
                 {
                     InscricaoID = r.InscricaoID,
                     DataInscri = r.DataInscricao,
-                   
                     Curso = q.TipoCurso,
                     Nome = c.NomeCompleto
-                 
+
                 };
+
             return View(inscricoes.ToList().OrderByDescending(r => r.InscricaoID));
         }
 
-        // GET: Inscricao/Details/5
+        // GET: Inscrições/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -67,25 +68,28 @@ namespace InspiringIPT.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            var tcurso = (from c in db.Cursos where inscricoes.CursoFK == c.CursoID select c.TipoCurso).Single();
-            var nome = (from a in db.Alunos where inscricoes.AlunoFK == a.AlunoID select a.NomeCompleto).Single();
-            
+            var tcurso = (from q in db.Cursos where inscricoes.CursoFK == q.CursoID select q.TipoCurso).Single();
+            var nome = (from c in db.Alunos where inscricoes.AlunoFK == c.AlunoID select c.NomeCompleto).Single();
 
             ViewBag.nome = nome;
             ViewBag.tipo = tcurso;
             return View(inscricoes);
+
         }
 
-        // GET: Inscricao/Create
+        // GET: Inscrição/Create
+        //[Authorize]
         public ActionResult ConsultarInscricao()
         {
+
             ViewBag.CursoFK = new SelectList(db.Cursos, "CursoID", "TipoCurso");
             return View();
         }
 
-        // POST: Inscricao/Create
+        // POST: Inscrição/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -93,19 +97,28 @@ namespace InspiringIPT.Controllers
         {
             var userid = User.Identity.GetUserId();
 
+            // recupera o ID do utilizador
+            inscricao.AlunoFK = (from c in db.Alunos where c.UserID == userid select c.AlunoID).Single();
+            // regista a data em q foi efetuada a inscrição 
+            inscricao.DataInscricao = DateTime.Now;
+            // determina o ID da inscrição
+            int newID = (from rr in db.Inscricao orderby rr.InscricaoID descending select rr.InscricaoID).FirstOrDefault() + 1;
+            inscricao.InscricaoID = newID;
+
             if (ModelState.IsValid)
             {
                 db.Inscricao.Add(inscricao);
                 db.SaveChanges();
-
-                return RedirectToAction("Index");
+                // falta notificar utilizador q a inscrição foi efetuada com sucesso
+                return RedirectToAction("Details", new { id = newID });
             }
-            ViewBag.CursoFK = new SelectList(db.Cursos, "CursoID", "TipoCurso", inscricao.CursoFK);
 
+            ViewBag.CursoFK = new SelectList(db.Cursos, "CursoID", "TipoCurso", inscricao.CursoFK);
             return View(inscricao);
         }
 
         // GET: Inscricao/Edit/5
+        //[Authorize]
         public ActionResult Edit(int? id)
         {
             ViewBag.CursoFK = new SelectList(db.Cursos, "CursoID", "TipoCurso");
@@ -121,48 +134,58 @@ namespace InspiringIPT.Controllers
             return View(inscricoes);
         }
 
-        // POST: Inscricao/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "InscricaoID,DataInscricao,AlunoFK,CursoFK")] Inscricao inscricao)
         {
-          
+            var userid = User.Identity.GetUserId();
+
             if (ModelState.IsValid)
             {
                 db.Entry(inscricao).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = inscricao.InscricaoID });
             }
-            ViewBag.CursoFK = new SelectList(db.Cursos, "QuartoID", "TipoCurso", inscricao.CursoFK);
+            ViewBag.CursoFK = new SelectList(db.Cursos, "CursoID", "TipoCurso", inscricao.CursoFK);
             return View(inscricao);
         }
 
-        // GET: Inscricao/Delete/5
+        // GET: Reservas/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
-            Inscricao inscricao = db.Inscricao.Find(id);
-            if (inscricao == null)
+            Inscricao inscricoes = db.Inscricao.Find(id);
+            if (inscricoes == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(inscricao);
+            return View(inscricoes);
         }
 
-        // POST: Inscricao/Delete/5
+        [Authorize]
+        // POST: Reservas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Inscricao inscricao = db.Inscricao.Find(id);
-            db.Inscricao.Remove(inscricao);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+
+                db.Inscricao.Remove(inscricao);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                
+                return View(inscricao);
+            }
         }
 
         protected override void Dispose(bool disposing)
