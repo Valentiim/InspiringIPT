@@ -8,17 +8,15 @@ namespace InspiringIPT.Models
         public Alunos(){
             Inscricao = new HashSet<Inscricao>();
         }
-      
         [Key]
         public int AlunoID { get; set; }
-
-        [Required]
+        [Required (ErrorMessage ="Introduzir o seu nome nome completo")]
         [Display(Name = "Nome Completo: ")]
         public string NomeCompleto { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Introduzir o seu concelho")]
         [Display(Name = "Concelho: ")]
         public string Concelho { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Introduzir o seu e-mail válido")]
         [Display(Name = "E-mail: ")]
         public string Email { get; set; }
         [Required]

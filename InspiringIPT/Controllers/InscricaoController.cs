@@ -18,19 +18,19 @@ namespace InspiringIPT.Controllers
         public ActionResult Index()
         {
             var userid = User.Identity.GetUserId();
-            var user = (from c in db.Alunos where c.UserID == userid select c.AlunoID).Single();
+            var user = (from a in db.Alunos where a.UserID == userid select a.AlunoID).Single();
             IEnumerable<Lista> inscricoes =
-                from r in db.Inscricao
-                join q in db.Cursos on r.CursoFK equals q.CursoID
-                where r.AlunoFK == user
+                from i in db.Inscricao
+                join c in db.Cursos on i.CursoFK equals c.CursoID
+                where i.AlunoFK == user
                 select new Lista
                 {
-                    InscricaoID = r.InscricaoID,
-                    DataInscri = r.DataInscricao,
-                    Curso = q.TipoCurso
+                    InscricaoID = i.InscricaoID,
+                    DataInscri = i.DataInscricao,
+                    Curso = c.TipoCurso
 
                 };
-            var lista = inscricoes.ToList().OrderByDescending(r => r.InscricaoID);
+            var lista = inscricoes.ToList().OrderByDescending(i => i.InscricaoID);
             return View(lista);
         }
 
@@ -39,19 +39,19 @@ namespace InspiringIPT.Controllers
         public ActionResult Lista()
         {
             IEnumerable<Lista> inscricoes =
-                from r in db.Inscricao
-                join q in db.Cursos on r.CursoFK equals q.CursoID
-                join c in db.Alunos on r.AlunoFK equals c.AlunoID
+                from i in db.Inscricao
+                join c in db.Cursos on i.CursoFK equals c.CursoID
+                join a in db.Alunos on i.AlunoFK equals a.AlunoID
                 select new Lista
                 {
-                    InscricaoID = r.InscricaoID,
-                    DataInscri = r.DataInscricao,
-                    Curso = q.TipoCurso,
-                    Nome = c.NomeCompleto
+                    InscricaoID = i.InscricaoID,
+                    DataInscri = i.DataInscricao,
+                    Curso = c.TipoCurso,
+                    Nome = a.NomeCompleto
 
                 };
 
-            return View(inscricoes.ToList().OrderByDescending(r => r.InscricaoID));
+            return View(inscricoes.ToList().OrderByDescending(i => i.InscricaoID));
         }
 
         // GET: Inscrições/Details/5
@@ -68,8 +68,8 @@ namespace InspiringIPT.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            var tcurso = (from q in db.Cursos where inscricoes.CursoFK == q.CursoID select q.TipoCurso).Single();
-            var nome = (from c in db.Alunos where inscricoes.AlunoFK == c.AlunoID select c.NomeCompleto).Single();
+            var tcurso = (from c in db.Cursos where inscricoes.CursoFK == c.CursoID select c.TipoCurso).Single();
+            var nome = (from a in db.Alunos where inscricoes.AlunoFK == a.AlunoID select a.NomeCompleto).Single();
 
             ViewBag.nome = nome;
             ViewBag.tipo = tcurso;
@@ -98,11 +98,11 @@ namespace InspiringIPT.Controllers
             var userid = User.Identity.GetUserId();
 
             // recupera o ID do utilizador
-            inscricao.AlunoFK = (from c in db.Alunos where c.UserID == userid select c.AlunoID).Single();
+            inscricao.AlunoFK = (from a in db.Alunos where a.UserID == userid select a.AlunoID).Single();
             // regista a data em q foi efetuada a inscrição 
             inscricao.DataInscricao = DateTime.Now;
             // determina o ID da inscrição
-            int newID = (from rr in db.Inscricao orderby rr.InscricaoID descending select rr.InscricaoID).FirstOrDefault() + 1;
+            int newID = (from ii in db.Inscricao orderby ii.InscricaoID descending select ii.InscricaoID).FirstOrDefault() + 1;
             inscricao.InscricaoID = newID;
 
             if (ModelState.IsValid)

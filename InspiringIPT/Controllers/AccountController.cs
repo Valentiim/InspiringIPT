@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -9,7 +6,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using InspiringIPT.Models;
-using InspiringIPT;
 
 namespace InspiringIPT.Controllers
 {
@@ -95,11 +91,11 @@ namespace InspiringIPT.Controllers
             }
 
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            TempData["is"] = "Iniciar Sessão";
+          
             switch (result)
             {
                 case SignInStatus.Success:
-                    TempData["LogSuccess"] = "Login efectuado com sucesso";
+               
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -107,7 +103,7 @@ namespace InspiringIPT.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    TempData["LogErro"] = "Existiu um erro! Verifique se introduziu os dados correctamente";
+                    
                     return View(model);
             }
         }
@@ -124,29 +120,29 @@ namespace InspiringIPT.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, Alunos c)
+        public async Task<ActionResult> Register(RegisterViewModel model, Alunos a)
         {
-            TempData["Reg"] = "Registo";
+            
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    TempData["RegSuccess"] = "Registo Efectuado com Sucesso";
+                    
                     var aluno = new Alunos
                     {
                         UserID = user.Id,
-                        NomeCompleto = c.NomeCompleto,
-                        Concelho = c.Concelho,
-                        Email = c.Email,
-                        Contacto = c.Contacto,
-                        Sexo = c.Sexo,
-                        DataNascimento = c.DataNascimento,
-                        HabAcademicas = c.HabAcademicas,
-                        InforCursos = c.InforCursos,
-                        AreasInteresse = c.AreasInteresse,
-                        Observacoes = c.Observacoes,        
+                        NomeCompleto = a.NomeCompleto,
+                        Concelho = a.Concelho,
+                        Email = a.Email,
+                        Contacto = a.Contacto,
+                        Sexo = a.Sexo,
+                        DataNascimento = a.DataNascimento,
+                        HabAcademicas = a.HabAcademicas,
+                        InforCursos = a.InforCursos,
+                        AreasInteresse = a.AreasInteresse,
+                        Observacoes = a.Observacoes,        
                         
                     };
                     //mantém a Sessão iniciada
@@ -164,8 +160,7 @@ namespace InspiringIPT.Controllers
                     //return RedirectToAction("Perfil", "Clientes");
                     return View("Info");
                 }
-                //Caso Exita erro aparece mensagem de erro no registo
-                TempData["RegErro"] = "Verifique se os dados Correctos!";
+            
                 AddErrors(result);
             }
             return View(model);

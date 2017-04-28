@@ -18,7 +18,7 @@ namespace InspiringIPT.Controllers
         public ActionResult Perfil()
         {
             var userid = User.Identity.GetUserId();
-            var user = (from c in db.Alunos where c.UserID == userid select c).Single();
+            var user = (from a in db.Alunos where a.UserID == userid select a).Single();
             ViewBag.aluno = user;
             return View(user);
         }
@@ -26,21 +26,21 @@ namespace InspiringIPT.Controllers
         public ActionResult Lista()
         {
             IEnumerable<ListaAlunos> aluno =
-                from c in db.Alunos
-                join u in db.Users on c.UserID equals u.Id
+                from a in db.Alunos
+                join u in db.Users on a.UserID equals u.Id
                 select new ListaAlunos
                 {
-                    AlunoID = c.AlunoID,
-                    Nome = c.NomeCompleto,
-                    Concelho = c.Concelho,
-                    EMAIL = c.Email,
-                    Contacto = c.Contacto,
-                    Sexo = c.Sexo,
-                    Data_Nascimento = c.DataNascimento,
-                    Habilitacoes = c.HabAcademicas,
-                    Informacoes = c.InforCursos,
-                    Areas = c.AreasInteresse,
-                    Obs = c.Observacoes,
+                    AlunoID = a.AlunoID,
+                    Nome = a.NomeCompleto,
+                    Concelho = a.Concelho,
+                    EMAIL = a.Email,
+                    Contacto = a.Contacto,
+                    Sexo = a.Sexo,
+                    Data_Nascimento = a.DataNascimento,
+                    Habilitacoes = a.HabAcademicas,
+                    Informacoes = a.InforCursos,
+                    Areas = a.AreasInteresse,
+                    Obs = a.Observacoes,
                 };
             return View(aluno.ToList());
         }
@@ -112,7 +112,7 @@ namespace InspiringIPT.Controllers
         public ActionResult Editar()
         {
             var userid = User.Identity.GetUserId();
-            var user = (from c in db.Alunos where c.UserID == userid select c.AlunoID).Single();
+            var user = (from a in db.Alunos where a.UserID == userid select a.AlunoID).Single();
             ViewBag.aluno = user;
             Alunos alunos = db.Alunos.Find(user);
             if (alunos == null)
