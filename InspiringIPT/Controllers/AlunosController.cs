@@ -95,15 +95,12 @@ namespace InspiringIPT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AlunoID,NomeCompleto,Concelho,Email,Contacto,Sexo,DataNascimento,HabAcademicas,InforCursos,AreasInteresse,Observacoes,UserID")] Alunos alunos)
         {
-            TempData["cl"] = "Alterar Perfil";
             if (ModelState.IsValid)
             {
-                TempData["clienteSuccess"] = "Perfil Alterado com sucesso!";
                 db.Entry(alunos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = alunos.AlunoID });
             }
-            TempData["clienteErro"] = "Verifique se introduziu bem os dados!";
             return View(alunos);
         }
 

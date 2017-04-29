@@ -75,6 +75,7 @@ namespace InspiringIPT.Controllers
             ViewBag.tipo = tcurso;
             return View(inscricoes);
 
+
         }
 
         // GET: Inscrição/Create
@@ -101,15 +102,16 @@ namespace InspiringIPT.Controllers
             inscricao.AlunoFK = (from a in db.Alunos where a.UserID == userid select a.AlunoID).Single();
             // regista a data em q foi efetuada a inscrição 
             inscricao.DataInscricao = DateTime.Now;
-            // determina o ID da inscrição
+            // determina o ID da inscrição, e a ordem a começa por um
             int newID = (from ii in db.Inscricao orderby ii.InscricaoID descending select ii.InscricaoID).FirstOrDefault() + 1;
             inscricao.InscricaoID = newID;
 
             if (ModelState.IsValid)
             {
+                
                 db.Inscricao.Add(inscricao);
                 db.SaveChanges();
-                // falta notificar utilizador q a inscrição foi efetuada com sucesso
+              
                 return RedirectToAction("Details", new { id = newID });
             }
 
@@ -183,7 +185,7 @@ namespace InspiringIPT.Controllers
             }
             catch (Exception)
             {
-                
+
                 return View(inscricao);
             }
         }
