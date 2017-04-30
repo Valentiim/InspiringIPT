@@ -33,6 +33,7 @@ namespace InspiringIPT.Controllers
                     AlunoID = a.AlunoID,
                     Nome = a.NomeCompleto,
                     Concelho = a.Concelho,
+                    Curso = a.Curso,
                     EMAIL = a.Email,
                     Contacto = a.Contacto,
                     Sexo = a.Sexo,

@@ -17,6 +17,8 @@ namespace InspiringIPT.Models
         public string EMAIL { get; set; }
         [Display(Name = "Contacto")]
         public string Contacto { get; set; }
+        [Display(Name = "Curso")]
+        public string Curso { get; set; }
         [Display(Name = "Sexo")]
         public string Sexo { get; set; }
         [Display(Name = "Data de Nascimento")]

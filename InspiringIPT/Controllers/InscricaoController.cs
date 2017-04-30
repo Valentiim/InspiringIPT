@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace InspiringIPT.Controllers
@@ -56,6 +55,7 @@ namespace InspiringIPT.Controllers
 
         // GET: Inscrições/Details/5
         [Authorize]
+        [Authorize(Roles = "Funcionarios")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -80,6 +80,7 @@ namespace InspiringIPT.Controllers
 
         // GET: Inscrição/Create
         //[Authorize]
+        [Authorize(Roles = "Funcionarios")]
         public ActionResult ConsultarInscricao()
         {
 
@@ -92,8 +93,8 @@ namespace InspiringIPT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [Authorize]
+        [Authorize(Roles = "Funcionarios")]
         public ActionResult ConsultarInscricao([Bind(Include = "InscricaoID,DataInscricao,AlunoFK,CursoFK")] Inscricao inscricao)
         {
             var userid = User.Identity.GetUserId();
@@ -138,7 +139,7 @@ namespace InspiringIPT.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Funcionarios")]
         public ActionResult Edit([Bind(Include = "InscricaoID,DataInscricao,AlunoFK,CursoFK")] Inscricao inscricao)
         {
             var userid = User.Identity.GetUserId();
@@ -155,6 +156,7 @@ namespace InspiringIPT.Controllers
 
         // GET: Reservas/Delete/5
         [Authorize]
+        [Authorize(Roles = "Funcionarios")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -170,7 +172,7 @@ namespace InspiringIPT.Controllers
         }
 
         [Authorize]
-        // POST: Reservas/Delete/5
+        // POST: Inscricao/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

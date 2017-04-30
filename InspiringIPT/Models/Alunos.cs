@@ -24,9 +24,13 @@ namespace InspiringIPT.Models
         [RegularExpression("[0-9]{9}", ErrorMessage = "O Contacto é composto por 9 caracteres Numéricos")]
         public string Contacto { get; set; }
         [Required]
+        [Display(Name = "Curso: ")]
+        public string Curso { get; set; }
+        [Required]
         [Display(Name = "Sexo: ")]
         public string Sexo { get; set; }
         [Required]
+        [Display(Name = "Data de Nascimento ")]
         [RegularExpression("[0-9]{2}-[0-9]{2}-[0-9]{4}", ErrorMessage = "A data de nascimento tem de ser escrito da seguinte forma XX-XX-XXXX")]
         public string DataNascimento { get; set; }
         [Required]
@@ -39,7 +43,7 @@ namespace InspiringIPT.Models
         [Display(Name = "Observações: ")]
         public string Observacoes { get; set; }
         public string UserID { get; set; }
-        public int Curso { get; set; }
+       
 
        //herança
         public virtual ICollection<Inscricao> Inscricao { get; set; }

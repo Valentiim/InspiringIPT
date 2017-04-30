@@ -149,7 +149,7 @@ namespace InspiringIPT.Controllers
                     //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     //Pré-Define uma role ao utilizador
                     await UserManager.AddToRoleAsync(user.Id, "Alunos");
-                    //Guarda os dados do cliente na Base de Dados
+                    //Guarda os dados do Aluno na Base de Dados
                     db.Alunos.Add(aluno);
                     db.SaveChanges();
                     //Envia o E-mail de Confirmação para o email do User ID
@@ -157,7 +157,7 @@ namespace InspiringIPT.Controllers
                     //mensagem que aparece na página Info
                     ViewBag.Message = "Por Favor Verifique o E-mail para activar a Conta "
                          + "Depois inicie a sessão.";
-                    //return RedirectToAction("Perfil", "Clientes");
+                    //return RedirectToAction("Perfil", "Alunos");
                     return View("Info");
                 }
             

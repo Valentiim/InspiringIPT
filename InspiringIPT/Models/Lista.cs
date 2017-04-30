@@ -12,7 +12,7 @@ namespace InspiringIPT.Models
         public int InscricaoID { get; set; }
         [Display(Name = "Data de Inscrição")]
         public DateTime DataInscri { get; set; }
-        [Display(Name = "Tipo")]
+        [Display(Name = "Tipo Curso")]
         public string Curso { get; set; }
         [Display(Name = "Aluno")]
         public string Nome { get; set; }
