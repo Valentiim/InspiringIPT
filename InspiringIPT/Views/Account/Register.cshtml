@@ -5,24 +5,20 @@
     ViewBag.Title2 = "Dados Pessoais";
 }
 
+    <div class="row" style="position:center;">
+        @using (Html.BeginForm("Inscrever", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
 
-<div class="row" style="position:center;">
+            <div class="col-md-6">
 
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
 
-
-    @using (Html.BeginForm("Inscrever", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-
-        <div class="col-md-6">
-
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary("", new { @class = "text-danger" })
-
-            @*oculta a secção de inserção do email, password e a confirmação da password para os alunos*@
-            @*@if (User.IsInRole("Funcionarios"))
-            {*@
-            <br>
-                <div class="form-group">  
+                @*oculta a secção de inserção do email, password e a confirmação da password para os alunos*@
+                @*@if (User.IsInRole("Funcionarios"))
+                    {*@
+                <br>
+                <div class="form-group">
                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
                         <div style="margin-bottom: 25px" class="input-group">
@@ -56,33 +52,31 @@
                         </div>
                     </div>
                 </div>
-            @*}
-            @*términa aqui*@
-
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="form-group">
-                    <div class="col-lg-12">
-
-                        <h4 class="page-header">@ViewBag.Title2</h4>
-
-                    </div>
-                    @Html.Partial("~/Views/Alunos/Create.cshtml")
-                </div>
-
-                <div class="col-md-offset-2" style="margin-top:10px">
-                    <input type="submit" value="Inscrever" class="btn btn-success" />
-                </div>
-
+                @*}
+                    @*términa aqui*@
 
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <div class="col-lg-12">
 
-        </div>
+                            <h4 class="page-header">@ViewBag.Title2</h4>
+
+                        </div>
+                        @Html.Partial("~/Views/Alunos/Create.cshtml")
+                    </div>
+
+                    <div class="col-md-offset-2" style="margin-top:10px">
+                        <input type="submit" value="Inscrever" class="btn btn-success" />
+                    </div>
 
 
-    }
-</div>
+                </div>
+
+            </div>
+        }
+    </div>
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }

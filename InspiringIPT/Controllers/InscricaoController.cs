@@ -12,7 +12,7 @@ namespace InspiringIPT.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Inscricao
+        // GET: Inscrição
         [Authorize]
         public ActionResult Index()
         {
@@ -75,7 +75,6 @@ namespace InspiringIPT.Controllers
             ViewBag.tipo = tcurso;
             return View(inscricoes);
 
-
         }
 
         // GET: Inscrição/Create
@@ -120,7 +119,7 @@ namespace InspiringIPT.Controllers
             return View(inscricao);
         }
 
-        // GET: Inscricao/Edit/5
+        // GET: Inscrição/Edit/5
         //[Authorize]
         public ActionResult Edit(int? id)
         {
@@ -154,7 +153,7 @@ namespace InspiringIPT.Controllers
             return View(inscricao);
         }
 
-        // GET: Reservas/Delete/5
+        // GET: Inscrição/Delete/5
         [Authorize]
         [Authorize(Roles = "Funcionarios")]
         public ActionResult Delete(int? id)
@@ -172,7 +171,7 @@ namespace InspiringIPT.Controllers
         }
 
         [Authorize]
-        // POST: Inscricao/Delete/5
+        // POST: Inscrição/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

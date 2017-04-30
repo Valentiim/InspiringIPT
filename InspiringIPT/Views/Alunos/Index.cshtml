@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<br />
     <p>
-        @*Cria link para criar um novo animal*@
+        @*Cria link para criar um novo aluno*@
         @Html.ActionLink("Criar um novo Aluno", "Create")
     </p>
     <table class="table">
@@ -40,8 +40,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Observacoes)
             </th>
-           
-            <th></th>
         </tr>
     
     @foreach (var item in Model) {

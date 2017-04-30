@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 
 namespace InspiringIPT.Models
 {
@@ -11,41 +12,45 @@ namespace InspiringIPT.Models
         [Key]
         public int AlunoID { get; set; }
         [Required (ErrorMessage ="Introduzir o seu nome nome completo")]
-        [Display(Name = "Nome Completo: ")]
+        [Display(Name = "Nome Completo:")]
         public string NomeCompleto { get; set; }
         [Required(ErrorMessage = "Introduzir o seu concelho")]
         [Display(Name = "Concelho: ")]
         public string Concelho { get; set; }
         [Required(ErrorMessage = "Introduzir o seu e-mail válido")]
-        [Display(Name = "E-mail: ")]
+        [Display(Name = "E-mail:")]
         public string Email { get; set; }
         [Required]
-        [Display(Name = "Telemóvel: ")]
+        [Display(Name = "Telemóvel:")]
         [RegularExpression("[0-9]{9}", ErrorMessage = "O Contacto é composto por 9 caracteres Numéricos")]
         public string Contacto { get; set; }
         [Required]
-        [Display(Name = "Curso: ")]
+        [Display(Name = "Curso:")]
         public string Curso { get; set; }
         [Required]
-        [Display(Name = "Sexo: ")]
+        [Display(Name = "Sexo:")]
         public string Sexo { get; set; }
         [Required]
-        [Display(Name = "Data de Nascimento ")]
-        [RegularExpression("[0-9]{2}-[0-9]{2}-[0-9]{4}", ErrorMessage = "A data de nascimento tem de ser escrito da seguinte forma XX-XX-XXXX")]
+        [Display(Name = "Data de Nascimento")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public string DataNascimento { get; set; }
         [Required]
-        [Display(Name = "Habilitações Académicas: ")]
+        [Display(Name = "Hab. Académicas:")]
         public string HabAcademicas { get; set; }
-        [Display(Name = "Quero receber informações sobre as seguintes áreas: ")]
+        [Display(Name = "Informações sobre Curso:")]
         public string InforCursos { get; set; }
-        [Display(Name = "Áreas de interesse: ")]
+        [Display(Name = "Áreas de interesse:")]
         public string AreasInteresse { get; set; }
-        [Display(Name = "Observações: ")]
+        [Display(Name = "Obs:")]
         public string Observacoes { get; set; }
         public string UserID { get; set; }
-       
 
-       //herança
+        public class AlunoDBContext : DbContext
+        {
+            public DbSet<Alunos> Alunos { get; set; }
+        }
+        //herança
         public virtual ICollection<Inscricao> Inscricao { get; set; }
 
     }

@@ -14,7 +14,7 @@ namespace InspiringIPT.Controllers
         // Cria uma referência à BD
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Alunos
-        [Authorize]
+        [Authorize(Roles = "Funcionarios")]
         public ActionResult Perfil()
         {
             var userid = User.Identity.GetUserId();
@@ -45,9 +45,13 @@ namespace InspiringIPT.Controllers
                 };
             return View(aluno.ToList());
         }
+        [Authorize(Roles = "Funcionarios")]
         public ActionResult Index()
         {
-            return RedirectToAction("Perfil");
+            var alunos = from m in db.Alunos
+                         select m;
+
+            return View(alunos);
         }
 
         // GET: Alunos/Details/5
@@ -121,7 +125,7 @@ namespace InspiringIPT.Controllers
             return View(alunos);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: Alunos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Funcionarios")]
@@ -129,16 +133,16 @@ namespace InspiringIPT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Editar([Bind(Include = "AlunoID,NomeCompleto,Concelho,Email,Contacto,Sexo,DataNascimento,HabAcademicas,InforCursos,AreasInteresse,Observacoes,UserID")] Alunos alunos)
         {
-            TempData["cl"] = "Alterar Perfil";
+           
             alunos.UserID = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
-                TempData["clienteSuccess"] = "Perfil Alterado com sucesso!";
+                
                 db.Entry(alunos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Perfil");
             }
-            TempData["clienteErro"] = "Verifique se introduziu bem os dados!";
+           
             return View(alunos);
         }
         protected override void Dispose(bool disposing)
