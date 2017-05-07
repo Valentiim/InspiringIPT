@@ -9,11 +9,11 @@ namespace InspiringIPT.Controllers
 {
     public class CursosController : Controller
     {
-          // Cria uma referência à BD
+        // Cria uma referência à BD
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Cursos  
-            
+
         public ActionResult Index()
         {
             return View(db.Cursos.OrderByDescending(m => m.Curso).ToList());

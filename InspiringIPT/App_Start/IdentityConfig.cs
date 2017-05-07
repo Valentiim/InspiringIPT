@@ -41,23 +41,17 @@ namespace InspiringIPT
             // Cria a Web transport para enviar email.
             var transportWeb = new Web(credentials);
             // Envia o E-mail
-            try
+
+            if (transportWeb != null)
             {
-                if (transportWeb != null)
-                {
-                    //envia a Mensagem
-                    await transportWeb.DeliverAsync(myMessage);
-                }
-                else
-                {
-                    //Falha ao enviar a mensagem
-                    Trace.TraceError("Falha ao criar Web transport.");
-                    await Task.FromResult(0);
-                }
+                //envia a Mensagem
+                await transportWeb.DeliverAsync(myMessage);
             }
-            catch (Exception ex)
+            else
             {
-                Trace.TraceError(ex.Message + "Sengrid não está a funcionar.");
+                //Falha ao enviar a mensagem
+                Trace.TraceError("Falha ao criar Web transport.");
+                await Task.FromResult(0);
             }
         }
     }

@@ -125,7 +125,7 @@ namespace InspiringIPT.Controllers
             
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -135,6 +135,7 @@ namespace InspiringIPT.Controllers
                         UserID = user.Id,
                         NomeCompleto = a.NomeCompleto,
                         Concelho = a.Concelho,
+                        Curso = a.Curso,
                         Email = a.Email,
                         Contacto = a.Contacto,
                         Sexo = a.Sexo,
@@ -155,7 +156,7 @@ namespace InspiringIPT.Controllers
                     //Envia o E-mail de Confirmação para o email do User ID
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirmar E-Mail");
                     //mensagem que aparece na página Info
-                    ViewBag.Message = "Por Favor Verifique o E-mail para activar a Conta "
+                    ViewBag.Message = "Por favor acede ao seu e-mail para poder activar a sua conta "
                          + "Depois inicie a sessão.";
                     //return RedirectToAction("Perfil", "Alunos");
                     return View("Info");

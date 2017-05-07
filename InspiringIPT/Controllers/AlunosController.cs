@@ -34,7 +34,7 @@ namespace InspiringIPT.Controllers
                     Nome = a.NomeCompleto,
                     Concelho = a.Concelho,
                     Curso = a.Curso,
-                    EMAIL = a.Email,
+                    EMAIL = u.Email,
                     Contacto = a.Contacto,
                     Sexo = a.Sexo,
                     Data_Nascimento = a.DataNascimento,
@@ -98,7 +98,7 @@ namespace InspiringIPT.Controllers
         [Authorize(Roles = "Funcionarios")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AlunoID,NomeCompleto,Concelho,Email,Contacto,Sexo,DataNascimento,HabAcademicas,InforCursos,AreasInteresse,Observacoes,UserID")] Alunos alunos)
+        public ActionResult Edit([Bind(Include = "AlunoID,NomeCompleto,Concelho,Curso,Email,Contacto,Sexo,DataNascimento,HabAcademicas,InforCursos,AreasInteresse,Observacoes,UserID")] Alunos alunos)
         {
             if (ModelState.IsValid)
             {
@@ -131,7 +131,7 @@ namespace InspiringIPT.Controllers
         [Authorize(Roles = "Funcionarios")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "AlunoID,NomeCompleto,Concelho,Email,Contacto,Sexo,DataNascimento,HabAcademicas,InforCursos,AreasInteresse,Observacoes,UserID")] Alunos alunos)
+        public ActionResult Editar([Bind(Include = "AlunoID,NomeCompleto,Concelho,Curso, Email,Contacto,Sexo,DataNascimento,HabAcademicas,InforCursos,AreasInteresse,Observacoes,UserID")] Alunos alunos)
         {
            
             alunos.UserID = User.Identity.GetUserId();
