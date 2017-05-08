@@ -8,7 +8,7 @@ namespace InspiringIPT.Models
 {
     public class Lista
     {
-        [Display(Name = "Id Inscricao")]
+        [Display(Name = "Id Inscrição")]
         public int InscricaoID { get; set; }
         [Display(Name = "Data de Inscrição")]
         public DateTime DataInscri { get; set; }

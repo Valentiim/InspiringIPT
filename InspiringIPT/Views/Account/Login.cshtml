@@ -1,6 +1,6 @@
 ﻿@using InspiringIPT.Models
 @model LoginViewModel
-    <br />
+<br />
 @{
     ViewBag.Title = "Iniciar Sessão";
 }
@@ -47,15 +47,17 @@
                         <input type="submit" value="Iniciar Sessão" class="btn btn-success" />
                     </div>
                 </div>
-                <div class="col-md-10 col-md-offset-2">
-                    @Html.ActionLink("Inscrever novo Aluno", "Register")|@Html.ActionLink("Esqueceu-se da Password?", "ForgotPassword")
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-3">
+                        @Html.ActionLink("Inscrever novo Aluno", "Register") | @Html.ActionLink("Esqueceu-se da Password?", "ForgotPassword")
+                    </div>
                 </div>
             </section>
         }
     </div>
-    <div class="col-md-6">
-        <img class="img-responsive" src="~/Imags/campus_ipt.jpg" alt="">
-    </div>
+    @*<div class="col-md-6">
+            <img class="img-responsive" src="~/Imags/campus_ipt.jpg" alt="">
+        </div>*@
 </div>
 
 @section Scripts {

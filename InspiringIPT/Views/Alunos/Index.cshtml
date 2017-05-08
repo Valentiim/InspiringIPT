@@ -17,6 +17,9 @@
                 @Html.DisplayNameFor(model => model.Concelho)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Curso)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
@@ -43,14 +46,16 @@
         </tr>
     
     @foreach (var item in Model) {
-        /*Para cada Animal presente na lista,
-        constroi uma Linha Tabela*/
+   
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.NomeCompleto)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Concelho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Curso)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)

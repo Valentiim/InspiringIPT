@@ -227,7 +227,7 @@ namespace InspiringIPT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            TempData["AP"] = "Alterar Password";
+            TempData["AP"] = "Alterar password";
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -241,10 +241,10 @@ namespace InspiringIPT.Controllers
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
 
-                TempData["ChangeSuccess"] = "Password Alterada com Sucesso!";
+                TempData["ChangeSuccess"] = "Password alterada com sucesso!";
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
-            TempData["ChangeErro"] = "Verifique se tem os dados Correctos!";
+            TempData["ChangeErro"] = "Verifique se tem os dados correctos!";
             AddErrors(result);
             return View(model);
         }

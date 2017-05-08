@@ -78,7 +78,7 @@ namespace InspiringIPT.Controllers
         }
 
         // GET: Inscrição/Create
-        //[Authorize]
+        [Authorize]
         [Authorize(Roles = "Funcionarios")]
         public ActionResult ConsultarInscricao()
         {
@@ -120,7 +120,7 @@ namespace InspiringIPT.Controllers
         }
 
         // GET: Inscrição/Edit/5
-        //[Authorize]
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             ViewBag.CursoFK = new SelectList(db.Cursos, "CursoID", "TipoCurso");

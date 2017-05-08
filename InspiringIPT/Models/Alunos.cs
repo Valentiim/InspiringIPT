@@ -17,7 +17,7 @@ namespace InspiringIPT.Models
         [Required(ErrorMessage = "Introduzir o seu concelho")]
         [Display(Name = "Concelho: ")]
         public string Concelho { get; set; }
-        [Required(ErrorMessage = "Introduzir o seu e-mail válido")]
+        [Required(ErrorMessage = "Introduzir um e-mail válido")]
         [Display(Name = "E-mail:")]
         public string Email { get; set; }
         [Required]
