@@ -88,7 +88,7 @@ namespace InspiringIPT.Controllers
             if (ModelState.IsValid)
             {
                 
-                db.Entry(cursos).State = EntityState.Modified;
+                db.Entry(cursos).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

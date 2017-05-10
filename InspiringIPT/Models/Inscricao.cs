@@ -11,10 +11,7 @@ namespace InspiringIPT.Models
     {
         [Key]
         public int InscricaoID { get; set; }
-        [Display(Name = "Data de Inscrição")]
-        [Column(TypeName = "date")]
-        public DateTime DataInscricao { get; set; }
-
+        
         [Display(Name = "Aluno")]
         public int AlunoFK { get; set; }
         public virtual Alunos Alunos { get; set; }
@@ -23,5 +20,8 @@ namespace InspiringIPT.Models
         public int CursoFK { get; set; }
         public virtual Cursos Cursos { get; set; }
 
+        [Display(Name = "Data de Inscrição")]
+        [Column(TypeName = "date")]
+        public DateTime DataInscricao { get; set; }
     }
 }

@@ -147,19 +147,19 @@ namespace InspiringIPT.Controllers
                         
                     };
                     //mantém a Sessão iniciada
-                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     //Pré-Define uma role ao utilizador
                     await UserManager.AddToRoleAsync(user.Id, "Alunos");
                     //Guarda os dados do Aluno na Base de Dados
                     db.Alunos.Add(aluno);
                     db.SaveChanges();
                     //Envia o E-mail de Confirmação para o email do User ID
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirmar E-Mail");
-                    //mensagem que aparece na página Info
-                    ViewBag.Message = "Por favor acede ao seu e-mail para poder activar a sua conta "
-                         + "Depois inicie a sessão.";
-                    //return RedirectToAction("Perfil", "Alunos");
-                    return View("Info");
+                    //string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirmar E-Mail");
+                    ////mensagem que aparece na página Info
+                    //ViewBag.Message = "Por favor acede ao seu e-mail para poder activar a sua conta "
+                    //     + "Depois inicie a sessão.";
+                    return RedirectToAction("Perfil", "Alunos");
+                    //return View("Info");
                 }
             
                 AddErrors(result);

@@ -44,9 +44,10 @@ namespace InspiringIPT.Controllers
                 select new Lista
                 {
                     InscricaoID = i.InscricaoID,
+                    Nome = a.NomeCompleto,
+                    Curso = c.Curso,
                     DataInscri = i.DataInscricao,
-                    Curso = c.TipoCurso,
-                    Nome = a.NomeCompleto
+                  
 
                 };
 
@@ -68,11 +69,11 @@ namespace InspiringIPT.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            var tcurso = (from c in db.Cursos where inscricoes.CursoFK == c.CursoID select c.TipoCurso).Single();
+            var curso = (from c in db.Cursos where inscricoes.CursoFK == c.CursoID select c.Curso).Single();
             var nome = (from a in db.Alunos where inscricoes.AlunoFK == a.AlunoID select a.NomeCompleto).Single();
 
             ViewBag.nome = nome;
-            ViewBag.tipo = tcurso;
+            ViewBag.curso = curso;
             return View(inscricoes);
 
         }
