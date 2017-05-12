@@ -120,7 +120,7 @@ namespace InspiringIPT.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, Alunos a)
+        public async Task<ActionResult> Register(RegisterViewModel model, PotencialAluno a)
         {
             
             if (ModelState.IsValid)
@@ -130,28 +130,25 @@ namespace InspiringIPT.Controllers
                 if (result.Succeeded)
                 {
                     
-                    var aluno = new Alunos
+                    var aluno = new PotencialAluno
                     {
-                        UserID = user.Id,
+                        UserID =  user.Id,
                         NomeCompleto = a.NomeCompleto,
-                        Concelho = a.Concelho,
-                        Curso = a.Curso,
                         Email = a.Email,
-                        Contacto = a.Contacto,
-                        Sexo = a.Sexo,
+                        Concelho = a.Concelho,
                         DataNascimento = a.DataNascimento,
+                        Contacto = a.Contacto,
+                        Genero = a.Genero,
+                        DataInscricao = a.DataInscricao,
                         HabAcademicas = a.HabAcademicas,
-                        InforCursos = a.InforCursos,
-                        AreasInteresse = a.AreasInteresse,
-                        Observacoes = a.Observacoes,        
-                        
+                            
                     };
                     //mantém a Sessão iniciada
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     //Pré-Define uma role ao utilizador
                     await UserManager.AddToRoleAsync(user.Id, "Alunos");
                     //Guarda os dados do Aluno na Base de Dados
-                    db.Alunos.Add(aluno);
+                    db.PotencialAluno.Add(aluno);
                     db.SaveChanges();
                     //Envia o E-mail de Confirmação para o email do User ID
                     //string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirmar E-Mail");

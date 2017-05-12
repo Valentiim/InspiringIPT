@@ -16,7 +16,7 @@ namespace InspiringIPT.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Cursos.OrderByDescending(m => m.Curso).ToList());
+            return View(db.Cursos.OrderByDescending(m => m.NomeCurso).ToList());
         }
 
         // GET: Cursos/Details/5
@@ -37,7 +37,7 @@ namespace InspiringIPT.Controllers
             }
         }
         // GET: Cursos/Create
-        [Authorize(Roles = "Funcionarios")]
+        //[Authorize(Roles = "Funcionarios")]
         public ActionResult Create()
         {
             return View();
@@ -46,10 +46,11 @@ namespace InspiringIPT.Controllers
         // POST: Cursos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Funcionarios")]
-        public ActionResult Create([Bind(Include = "CursoID,TipoCurso,Curso,Descricao")]Cursos cursos, HttpPostedFileBase file)
+        //[Authorize(Roles = "Funcionarios")]
+        public ActionResult Create([Bind(Include = "CursoID,NomeCurso,SiglaCurso,Descricao")]Cursos cursos, HttpPostedFileBase file)
         {
             
             if (ModelState.IsValid)
@@ -61,7 +62,7 @@ namespace InspiringIPT.Controllers
             }
             return View(cursos);
         }
-        [Authorize(Roles = "Funcionarios")]
+        //[Authorize(Roles = "Funcionarios")]
         // GET: Cursos/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,14 +77,14 @@ namespace InspiringIPT.Controllers
             }
             return View(cursos);
         }
-        [Authorize(Roles = "Funcionarios")]
+        //[Authorize(Roles = "Funcionarios")]
         // POST: Cursos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Funcionarios")]
-        public ActionResult Edit([Bind(Include = "CursoID,TipoCurso,Curso,Descricao")] Cursos cursos, HttpPostedFileBase file)
+        //[Authorize(Roles = "Funcionarios")]
+        public ActionResult Edit([Bind(Include = "CursoID,NomeCurso,SiglaCurso,Descricao")] Cursos cursos, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {

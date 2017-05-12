@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<InspiringIPT.Models.Cursos>
 
-@*Esta instução 'ensina' à view os dados que vem do CONTROLLER*@
+@*Esta instrução 'ensina' à view os dados que vem do CONTROLLER*@
 @{
     ViewBag.Title = "Cursos";
 }    
@@ -9,11 +9,12 @@
 
         <table class="table">
             <tr>
+                
                 <th>
-                    @Html.DisplayNameFor(model => model.TipoCurso)
+                    @Html.DisplayNameFor(model => model.NomeCurso)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Curso)
+                    @Html.DisplayNameFor(model => model.SiglaCurso)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Descricao)
@@ -28,10 +29,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TipoCurso)
+                        @Html.DisplayFor(modelItem => item.NomeCurso)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Curso)
+                        @Html.DisplayFor(modelItem => item.SiglaCurso)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Descricao)

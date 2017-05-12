@@ -11,27 +11,21 @@ namespace InspiringIPT.Models
         public int AlunoID { get; set; }
         [Display(Name = "Aluno")]
         public string Nome { get; set; }
-        [Display(Name = "Concelho")]
-        public string Concelho { get; set; }
         [Display(Name = "E-Mail")]
         public string EMAIL { get; set; }
-        [Display(Name = "Contacto")]
-        public string Contacto { get; set; }
-        [Display(Name = "Curso")]
-        public string Curso { get; set; }
-        [Display(Name = "Sexo")]
-        public string Sexo { get; set; }
+        [Display(Name = "Concelho")]
+        public string Concelho { get; set; }
         [Display(Name = "Data de Nascimento")]
         public string Data_Nascimento { get; set; }
+        [Display(Name = "Contacto")]
+        public string Contacto { get; set; }
+        [Display(Name = "Género")]
+        public string Genero { get; set; }
+        [Display(Name = "Data da Inscrição")]
+        public string Data_Inscricao { get; set; }
         [Display(Name = "Habilitações Académicas")]
         public string Habilitacoes { get; set; }
-        [Display(Name = "Informações cursos")]
-        public string Informacoes { get; set; }
-        [Display(Name = "Áreas de interesse")]
-        public string Areas { get; set; }
-        [Display(Name = "Observações")]
-        public string Obs { get; set; }
-
-
+        
+     
     }
 }

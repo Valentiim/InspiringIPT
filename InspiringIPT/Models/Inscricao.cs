@@ -11,10 +11,10 @@ namespace InspiringIPT.Models
     {
         [Key]
         public int InscricaoID { get; set; }
-        
+
         [Display(Name = "Aluno")]
         public int AlunoFK { get; set; }
-        public virtual Alunos Alunos { get; set; }
+        public virtual PotencialAluno PotencialAluno { get; set; }
 
         [Display(Name = "Curso")]
         public int CursoFK { get; set; }

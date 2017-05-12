@@ -9,49 +9,39 @@ using System.Web.Mvc;
 
 namespace InspiringIPT.Controllers
 {
-    public class AlunosController : Controller
+    public class PAlunoController : Controller
     {
         // Cria uma referência à BD
         private ApplicationDbContext db = new ApplicationDbContext();
-        // GET: Alunos
-        [Authorize(Roles = "Funcionarios")]
-        public ActionResult Perfil()
-        {
-            var userid = User.Identity.GetUserId();
-            var user = (from a in db.Alunos where a.UserID == userid select a).Single();
-            ViewBag.aluno = user;
-            return View(user);
-        }
+        //// GET: Alunos
+        //[Authorize(Roles = "Funcionarios")]
+        //public ActionResult Perfil()
+        //{
+        //    var userid = User.Identity.GetUserId();
+        //    var user = (from a in db.PotencialAluno where a.UserID == userid select a).Single();
+        //    ViewBag.aluno = user;
+        //    return View(user);
+        //}
         [Authorize(Roles = "Funcionarios")]
         public ActionResult Lista()
         {
             IEnumerable<ListaAlunos> aluno =
-                from a in db.Alunos
+                from a in db.PotencialAluno
                 join u in db.Users on a.UserID equals u.Id
                 select new ListaAlunos
                 {
                     AlunoID = a.AlunoID,
                     Nome = a.NomeCompleto,
                     Concelho = a.Concelho,
-                    Curso = a.Curso,
+                    Data_Nascimento = a.DataNascimento,
                     EMAIL = u.Email,
                     Contacto = a.Contacto,
-                    Sexo = a.Sexo,
-                    Data_Nascimento = a.DataNascimento,
+                    Genero = a.Genero,
+                    Data_Inscricao = a.DataInscricao,
                     Habilitacoes = a.HabAcademicas,
-                    Informacoes = a.InforCursos,
-                    Areas = a.AreasInteresse,
-                    Obs = a.Observacoes,
+                   
                 };
             return View(aluno.ToList());
-        }
-        [Authorize(Roles = "Funcionarios")]
-        public ActionResult Index()
-        {
-            var alunos = from m in db.Alunos
-                         select m;
-
-            return View(alunos);
         }
 
         // GET: Alunos/Details/5
@@ -62,29 +52,38 @@ namespace InspiringIPT.Controllers
             {
                 return RedirectToAction("Index");
             }
-            Alunos alunos = db.Alunos.Find(id);
+            PotencialAluno alunos = db.PotencialAluno.Find(id);
             if (alunos == null)
             {
                 return RedirectToAction("Index");
             }
             return View(alunos);
         }
-
         // GET: Alunos/Create
         public ActionResult Create()
         {
             return PartialView();
         }
 
+
+        ////[Authorize(Roles = "Funcionarios")]
+        //public ActionResult Index()
+        //{
+        //    var alunos = from m in db.PotencialAluno
+        //                 select m;
+
+        //    return View(alunos);
+        //}
+
         // GET: Alunos/Edit/5
-        [Authorize(Roles = "Funcionarios")]
+        //[Authorize(Roles = "Funcionarios")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction("Index");
             }
-            Alunos alunos = db.Alunos.Find(id);
+            PotencialAluno alunos = db.PotencialAluno.Find(id);
             if (alunos == null)
             {
                 return RedirectToAction("Index");
@@ -95,10 +94,11 @@ namespace InspiringIPT.Controllers
         // POST: Alunos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Funcionarios")]
+        
+        //[Authorize(Roles = "Funcionarios")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AlunoID,NomeCompleto,Concelho,Curso,Email,Contacto,Sexo,DataNascimento,HabAcademicas,InforCursos,AreasInteresse,Observacoes,UserID")] Alunos alunos)
+        public ActionResult Edit([Bind(Include = "AlunoID,NomeCompleto,Email,Concelho,DataNascimento,Contacto,Genero,DataInscricao,HabAcademicas,UserID")] PotencialAluno alunos)
         {
             if (ModelState.IsValid)
             {
@@ -114,9 +114,9 @@ namespace InspiringIPT.Controllers
         public ActionResult Editar()
         {
             var userid = User.Identity.GetUserId();
-            var user = (from a in db.Alunos where a.UserID == userid select a.AlunoID).Single();
+            var user = (from a in db.PotencialAluno where a.UserID == userid select a.AlunoID).Single();
             ViewBag.aluno = user;
-            Alunos alunos = db.Alunos.Find(user);
+            PotencialAluno alunos = db.PotencialAluno.Find(user);
             if (alunos == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -128,10 +128,10 @@ namespace InspiringIPT.Controllers
         // POST: Alunos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Funcionarios")]
+        //[Authorize(Roles = "Funcionarios")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "AlunoID,NomeCompleto,Concelho,Curso, Email,Contacto,Sexo,DataNascimento,HabAcademicas,InforCursos,AreasInteresse,Observacoes,UserID")] Alunos alunos)
+        public ActionResult Editar([Bind(Include = "AlunoID,NomeCompleto,Email,Concelho,DataNascimento,Contacto,Genero,DataInscricao,HabAcademicas,UserID")] PotencialAluno alunos)
         {
            
             alunos.UserID = User.Identity.GetUserId();

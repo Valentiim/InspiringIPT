@@ -29,10 +29,16 @@ namespace InspiringIPT.Models
         {
             return new ApplicationDbContext();
         }
-        public System.Data.Entity.DbSet<InspiringIPT.Models.Alunos> Alunos { get; set; }
-        public System.Data.Entity.DbSet<InspiringIPT.Models.Cursos> Cursos { get; set; }
        
+        public virtual DbSet<PotencialAluno> PotencialAluno { get; set; }
+        public virtual DbSet<Cursos> Cursos { get; set; }
+        public virtual DbSet<Areas> Areas { get; set; }
+        public virtual DbSet<Escola> Escola { get; set; }
+        public virtual DbSet<TipoCurso> TipoCurso { get; set; }
+        public virtual DbSet<OutrasAreas> OutrasAreas { get; set; }
+        public virtual DbSet<OutrosCursos> OutrosCursos { get; set; }
         public virtual DbSet<Inscricao> Inscricao { get; set; }
+
 
 
 
