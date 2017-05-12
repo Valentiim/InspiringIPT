@@ -12,7 +12,9 @@ namespace InspiringIPT.Models
         public Cursos()
         {
             // inicialização da lista de um Curso
-            PotencialAluno = new HashSet<PotencialAluno>();
+            ListaAreaAluno = new HashSet<PotencialAluno>();
+      
+
         }
         [Key]
         public int CursoID { get; set; }
@@ -40,9 +42,8 @@ namespace InspiringIPT.Models
         [Display(Name = "Escola")]
         public int EscolaFK { get; set; }
         public Escola Escola { get; set; }
-
-      
-        public virtual ICollection<PotencialAluno> PotencialAluno { get; set; }
+   
+        public virtual ICollection<PotencialAluno> ListaAreaAluno { get; set; }
        
 
     }

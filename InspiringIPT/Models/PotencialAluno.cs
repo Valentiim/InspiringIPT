@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
 
 namespace InspiringIPT.Models
 {
@@ -10,7 +8,10 @@ namespace InspiringIPT.Models
     {
         public PotencialAluno(){
             // inicialização da lista de Consultas de um Aluno
-            Cursos = new HashSet<Cursos>();
+            ListaCursosAreas = new HashSet<Cursos>();
+
+            ListaAreas_Outras = new HashSet<OutrasAreas>();
+            ListaCursos_Outros = new HashSet<OutrosCursos>();
         }
         [Key]
         public int AlunoID { get; set; }
@@ -62,7 +63,10 @@ namespace InspiringIPT.Models
 
 
         //herança
-        public virtual ICollection<Cursos> Cursos { get; set; }
+        public virtual ICollection<Cursos> ListaCursosAreas { get; set; }
+
+        public virtual ICollection<OutrasAreas> ListaAreas_Outras { get; set; }
+        public virtual ICollection<OutrosCursos> ListaCursos_Outros { get; set; }
         //public virtual ICollection<OutrasAreas> OutrasAreas { get; set; }
         //public virtual ICollection<OutrosCursos> OutrosCursos { get; set; }
     }

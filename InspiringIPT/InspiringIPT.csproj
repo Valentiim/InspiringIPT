@@ -336,24 +336,23 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\PAlunoController.cs" />
-    <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705121617524_Initial.cs" />
+    <Compile Include="Migrations\201705121617524_Initial.Designer.cs">
+      <DependentUpon>201705121617524_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Inscricao.cs" />
     <Compile Include="Models\OutrosCursos.cs" />
     <Compile Include="Models\PotencialAluno.cs" />
     <Compile Include="Models\Areas.cs" />
     <Compile Include="Models\Cursos.cs" />
     <Compile Include="Models\Escola.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Lista.cs" />
-    <Compile Include="Models\ListaAlunos.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OutrasAreas.cs" />
     <Compile Include="Models\TipoCurso.cs" />
@@ -456,16 +455,16 @@
     <Content Include="Views\Home\Ipt.cshtml" />
     <Content Include="Views\Home\Noticia.cshtml" />
     <Content Include="Views\Home\Agenda.cshtml" />
-    <Content Include="Views\Cursos\Index.cshtml" />
-    <Content Include="Views\Cursos\Details.cshtml" />
-    <Content Include="Views\Cursos\Create.cshtml" />
-    <Content Include="Views\Cursos\Edit.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705121617524_Initial.resx">
+      <DependentUpon>201705121617524_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
