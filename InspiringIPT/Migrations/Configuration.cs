@@ -9,43 +9,14 @@ namespace InspiringIPT.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;//permite a actualização automática da BD
+            AutomaticMigrationsEnabled = true;//permite a actualização automática da BD
         }
 
         protected override void Seed(InspiringIPT.Models.ApplicationDbContext context)
         {
-
             //########################################################
-            //adiciona os Potenciais Alunos
-            var potencialalunos = new List<PotencialAluno>
-            {
-                new PotencialAluno {AlunoID=1, NomeCompleto="Arruá Valentim Afonso",Email="arrua.afonso@gmail.com",Concelho="Tomar",DataNascimento = "05-02-2000",Contacto="967325844",Genero="Masculino", DataInscricao = ("11-05-2017"),HabAcademicas="Licenciatura", },
-                new PotencialAluno {AlunoID=2, NomeCompleto="João Gomes Cravid",Email="jgomesc@gmail.com",Concelho="Tomar",DataNascimento = "25,04,1999",Contacto="910202099",Genero="Masculino", DataInscricao = ("11-05-2017"),HabAcademicas="Licenciatura"},
-                new PotencialAluno {AlunoID=3, NomeCompleto="Paulo Duque Júnior",Email="pauloj@gmail.com",Concelho="Tomar",DataNascimento = ("15-02-2001"),Contacto="967386733",Genero="Masculino", DataInscricao = ("11-05-2017"),HabAcademicas="Licenciatura"},
-                new PotencialAluno {AlunoID=4, NomeCompleto="Ana Maria Conceição Lima",Email="a.lima@gmail.com",Concelho="Tomar",DataNascimento = ("01-06-1998"),Contacto="917834672",Genero="Feminino", DataInscricao = ("11-05-2017"),HabAcademicas="TeSPs"},
-            };
-            potencialalunos.ForEach(aa => context.PotencialAluno.AddOrUpdate(a => a.NomeCompleto, aa));
-            context.SaveChanges();
-
-            //########################################################
-            //adiciona Cursos
-            var cursos = new List<Cursos>
-            {
-
-                new Cursos {CursoID=1, NomeCurso="Engenharia Informática", SiglaCurso="EI", Descricao="Falta descrever", EscolaFK=5, AreaFK=2,TipoCursoFK=4},
-                new Cursos {CursoID=2, NomeCurso="Gestão Turística e Cultural", SiglaCurso="GTC", Descricao="Falta descrer",EscolaFK=3, AreaFK=5,TipoCursoFK=2},
-                new Cursos {CursoID=3, NomeCurso="Design e Tecnologia das Artes Gráficas", SiglaCurso="DTAG", Descricao="Falta descrer",EscolaFK=4, AreaFK=4,TipoCursoFK=3},
-                new Cursos {CursoID=4, NomeCurso="Engenharia Electrotécnica e de Computadores", SiglaCurso="EEC", Descricao="Falta descrer", EscolaFK=6, AreaFK=3,TipoCursoFK=5}
-
-            };
-            cursos.ForEach(cc => context.Cursos.AddOrUpdate(c => c.NomeCurso, cc));
-            context.SaveChanges();
-
-            
-
-        //########################################################
-        //adiciona as Áreas
-        var areas = new List<Areas> {
+            //adiciona as Áreas
+            var areas = new List<Areas> {
                 new Areas  {AreaID = 1, NomeArea = "Engenharia e Tecnologia"},
                 new Areas  {AreaID = 2, NomeArea = "Gestão"},
                 new Areas  {AreaID = 3, NomeArea = "Design"},
@@ -73,10 +44,37 @@ namespace InspiringIPT.Migrations
                 new Escola  {EscolaID = 1, NomeEscola = "Escola Superior de Tecnologia de Tomar", SiglaEscola="ESTT"},
                 new Escola  {EscolaID = 2, NomeEscola = "Escola Superior de Gestão de Tomar",SiglaEscola="ESGT"},
                 new Escola  {EscolaID = 3, NomeEscola = "Escola Superior de Tecnologia de Abrantes",SiglaEscola="ESTA"}
-               
+
             };
 
             escolas.ForEach(ee => context.Escola.AddOrUpdate(e => e.NomeEscola, ee));
+            context.SaveChanges();
+
+
+            //########################################################
+            //adiciona os Potenciais Alunos
+            var alunos = new List<PotencialAluno>
+            {
+                new PotencialAluno {AlunoID=1, NomeCompleto="Arruá Valentim Afonso",Email="arrua.afonso@gmail.com",Concelho="Tomar",DataNascimento = "05-02-2000",Contacto="967325844",Genero="Masculino", DataInscricao = ("11-05-2017"),HabAcademicas="Licenciatura", AreasFK =  1,  CursosFK = 1, TiposCursosFK= 1 },
+                new PotencialAluno {AlunoID=2, NomeCompleto="João Gomes Cravid",Email="jgomesc@gmail.com",Concelho="Tomar",DataNascimento = "25,04,1999",Contacto="910202099",Genero="Masculino", DataInscricao = ("11-05-2017"),HabAcademicas="Licenciatura",  AreasFK =  4, CursosFK = 2, TiposCursosFK= 3},
+                new PotencialAluno {AlunoID=3, NomeCompleto="Paulo Duque Júnior",Email="pauloj@gmail.com",Concelho="Tomar",DataNascimento = ("15-02-2001"),Contacto="967386733",Genero="Masculino", DataInscricao = ("11-05-2017"),HabAcademicas="Licenciatura",  AreasFK =  2, CursosFK = 3, TiposCursosFK= 2},
+                new PotencialAluno {AlunoID=4, NomeCompleto="Ana Maria Conceição Lima",Email="a.lima@gmail.com",Concelho="Tomar",DataNascimento = ("01-06-1998"),Contacto="917834672",Genero="Feminino", DataInscricao = ("11-05-2017"),HabAcademicas="TeSPs",  AreasFK =  3, CursosFK = 4, TiposCursosFK= 4},
+            };
+            alunos.ForEach(aa => context.PotencialAluno.AddOrUpdate(a => a.NomeCompleto, aa));
+            context.SaveChanges();
+
+            //########################################################
+            //adiciona Cursos
+            var cursos = new List<Cursos>
+            {
+
+                new Cursos {CursoID=1, NomeCurso="Engenharia Informática", SiglaCurso="EI", Descricao="Falta descrever", EscolaFK=5, AreaFK=2,TipoCursoFK=4},
+                new Cursos {CursoID=2, NomeCurso="Gestão Turística e Cultural", SiglaCurso="GTC", Descricao="Falta descrer",EscolaFK=3, AreaFK=5,TipoCursoFK=2},
+                new Cursos {CursoID=3, NomeCurso="Design e Tecnologia das Artes Gráficas", SiglaCurso="DTAG", Descricao="Falta descrer",EscolaFK=4, AreaFK=4,TipoCursoFK=3},
+                new Cursos {CursoID=4, NomeCurso="Engenharia Electrotécnica e de Computadores", SiglaCurso="EEC", Descricao="Falta descrer", EscolaFK=6, AreaFK=3,TipoCursoFK=5}
+
+            };
+            cursos.ForEach(cc => context.Cursos.AddOrUpdate(c => c.NomeCurso, cc));
             context.SaveChanges();
 
             //########################################################
