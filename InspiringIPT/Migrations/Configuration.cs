@@ -9,7 +9,7 @@ namespace InspiringIPT.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;//permite a actualização automática da BD
+            AutomaticMigrationsEnabled = false;//permite a actualização automática da BD
         }
 
         protected override void Seed(InspiringIPT.Models.ApplicationDbContext context)
@@ -17,14 +17,14 @@ namespace InspiringIPT.Migrations
 
             //########################################################
             //adiciona os Potenciais Alunos
-            var alunos = new List<PotencialAluno>
+            var potencialalunos = new List<PotencialAluno>
             {
                 new PotencialAluno {AlunoID=1, NomeCompleto="Arruá Valentim Afonso",Email="arrua.afonso@gmail.com",Concelho="Tomar",DataNascimento = "05-02-2000",Contacto="967325844",Genero="Masculino", DataInscricao = ("11-05-2017"),HabAcademicas="Licenciatura", },
                 new PotencialAluno {AlunoID=2, NomeCompleto="João Gomes Cravid",Email="jgomesc@gmail.com",Concelho="Tomar",DataNascimento = "25,04,1999",Contacto="910202099",Genero="Masculino", DataInscricao = ("11-05-2017"),HabAcademicas="Licenciatura"},
                 new PotencialAluno {AlunoID=3, NomeCompleto="Paulo Duque Júnior",Email="pauloj@gmail.com",Concelho="Tomar",DataNascimento = ("15-02-2001"),Contacto="967386733",Genero="Masculino", DataInscricao = ("11-05-2017"),HabAcademicas="Licenciatura"},
                 new PotencialAluno {AlunoID=4, NomeCompleto="Ana Maria Conceição Lima",Email="a.lima@gmail.com",Concelho="Tomar",DataNascimento = ("01-06-1998"),Contacto="917834672",Genero="Feminino", DataInscricao = ("11-05-2017"),HabAcademicas="TeSPs"},
             };
-            alunos.ForEach(aa => context.PotencialAluno.AddOrUpdate(a => a.NomeCompleto, aa));
+            potencialalunos.ForEach(aa => context.PotencialAluno.AddOrUpdate(a => a.NomeCompleto, aa));
             context.SaveChanges();
 
             //########################################################
