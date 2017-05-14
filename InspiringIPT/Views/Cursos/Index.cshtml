@@ -1,0 +1,83 @@
+﻿@model IEnumerable<InspiringIPT.Models.Cursos>
+
+@{
+    ViewBag.Title = "Os Cursos";
+}
+<h2>Lista dos Cursos</h2>
+<div class="row-">
+       
+            <br />
+            <table class="table">
+                <tr>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.NomeCurso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SiglaCurso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descricao)
+                    </th>
+                    <th></th>
+
+                    @if (User.IsInRole("Funcionarios"))
+            {
+                        <th>
+                            @Html.DisplayNameFor(model => model.AreaFK)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TipoCursoFK)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EscolaFK)
+                        </th>
+                    }
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomeCurso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SiglaCurso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descricao)
+                        </td>
+
+                        @if (User.IsInRole("Funcionarios"))
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AreaFK)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoCursoFK)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EscolaFK)
+                            </td>
+                        }
+                        @*@if (User.IsInRole("Funcionarios"))
+                            {*@
+                        <td>
+                            @Html.ActionLink("Alterar", "Edit", new { id = item.CursoID }, new {@class = "btn btn-warning" })  @Html.ActionLink("Detalhes", "Details", new { id = item.CursoID }, new { @class = "btn btn-info" })
+
+                        </td>
+                        @*}*@
+                    </tr>
+                }
+            </table>
+            @*@if (User.IsInRole("Funcionarios"))
+                {*@
+  
+                @Html.ActionLink("Adicionar novo Curso", "Create", "", new { @class = "btn btn-success" })
+       
+            @*}*@
+        </div>
+
+ 
+

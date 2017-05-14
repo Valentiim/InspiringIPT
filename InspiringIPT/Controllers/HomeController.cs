@@ -15,6 +15,11 @@ namespace InspiringIPT.Controllers
         {
             return View(db.Cursos.ToList().OrderBy(n => n.NomeCurso).Take(1));
         }
+        public ActionResult notFound()
+        {
+            return RedirectToAction("Index", "Home");
+            //return View();
+        }
 
         //Home/About
         public ActionResult About()

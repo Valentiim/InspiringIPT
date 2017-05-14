@@ -19,27 +19,27 @@ namespace InspiringIPT.Models
         [Key]
         public int CursoID { get; set; }
 
-        [Display(Name = "Nome do Curso")]
+        [Display(Name = "Nome do Curso:")]
         public string NomeCurso { get; set; }
 
-        [Display(Name = "Sigla do Curso")]
+        [Display(Name = "Sigla do Curso:")]
         public string SiglaCurso { get; set; }
 
-        [Display(Name = "Descrição")]
+        [Display(Name = "Descrição:")]
         public string Descricao { get; set; }
 
         // **************************
         // criar a chave forasteira, e cria um atributo
         // relaciona o objeto Cursos com um objeto Área
-        [Display(Name = "Áreas")]
+        [Display(Name = "Áreas:")]
         public int AreaFK { get; set; }
         public virtual Areas Areas { get; set; }
 
-        [Display(Name = "Tipo do Curso")]
+        [Display(Name = "Tipo do Curso:")]
         public int TipoCursoFK { get; set; }
         public TipoCurso TipoCurso { get; set; }
 
-        [Display(Name = "Escola")]
+        [Display(Name = "Escola:")]
         public int EscolaFK { get; set; }
         public Escola Escola { get; set; }
    
