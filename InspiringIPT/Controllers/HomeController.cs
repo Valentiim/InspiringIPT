@@ -34,7 +34,7 @@ namespace InspiringIPT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Inscricao([Bind(Include = "AlunoID,CursoID,AreaID,TipoID,NomeCompleto,Email,Concelho,DataNascimento,Contacto,Genero,DataInscricao,HabAcademicas,CursosFK,AreasFK,TiposCursosFK,UserID")] PotencialAluno potencialAluno)
+        public ActionResult Inscricao([Bind(Include = "AlunoID,CursoID,AreaID,TipoID,NomeCompleto,Email,Concelho,DataNascimento,Contacto,Genero,DataInscricao,HabAcademicas,CursosFK,AreasFK,TiposCursosFK")] PotencialAluno potencialAluno)
         {
             if (ModelState.IsValid)
             {

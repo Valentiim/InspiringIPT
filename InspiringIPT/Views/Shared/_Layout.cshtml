@@ -32,10 +32,10 @@
                     <li>@Html.ActionLink("Inscrever", "Inscricao", "Home")</li>
                     <li>@Html.ActionLink("Notícias", "Noticia", "Home")</li>
                     <li>@Html.ActionLink("Agenda", "Agenda", "Home")</li>
-                   
+                    <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
                 
                 @*aluno autenticado tem permissão de:*@
-                @if (User.Identity.IsAuthenticated)
+                @*@if (User.IsInRole("Funcionarios"))
                 {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Alunos<span class="caret"></span></a>
@@ -50,7 +50,7 @@
                 @*funcionario autenticado tem permissão de:*@
                 @*@if (User.IsInRole("Funcionarios"))
                 {*@
-                        <li class="dropdown">
+                        @*<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Listar Alunos", "Lista", "Alunos")</li>
@@ -59,8 +59,8 @@
                            
                         </ul>
                         </li>
-                @*}*@
-                            <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
+                @*}*@*
+                          
                 </ul>
 
                 @Html.Partial("_LoginPartial")
