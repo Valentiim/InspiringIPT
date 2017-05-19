@@ -12,6 +12,7 @@ namespace InspiringIPT.Controllers
 {
     public class CursosController : Controller
     {
+        //Objeto que referencia a nossa bases de dados "db"
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Cursos
@@ -52,7 +53,9 @@ namespace InspiringIPT.Controllers
         {
             if (ModelState.IsValid)
             {
+                // adiciona o objeto 'Cursos' a base de dados
                 db.Cursos.Add(cursos);
+                //torna a definitiva a adição
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

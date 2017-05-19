@@ -52,6 +52,7 @@ namespace InspiringIPT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AlunoID,CursoID,AreaID,TipoID,NomeCompleto,Email,Concelho,DataNascimento,Contacto,Genero,DataInscricao,HabAcademicas,CursosFK,AreasFK,TiposCursosFK")] PotencialAluno potencialAluno)
         {
+
             if (ModelState.IsValid)
             {
                 db.PotencialAluno.Add(potencialAluno);
