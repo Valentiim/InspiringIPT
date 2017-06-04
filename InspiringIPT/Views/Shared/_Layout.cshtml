@@ -33,9 +33,9 @@
                     <li>@Html.ActionLink("Notícias", "Noticia", "Home")</li>
                     <li>@Html.ActionLink("Agenda", "Agenda", "Home")</li>
                     <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
-                
+                   
                 @*aluno autenticado tem permissão de:*@
-                @*@if (User.IsInRole("Funcionarios"))
+                @*@if (User.IsInRole("Colaboradores"))
                 {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Alunos<span class="caret"></span></a>
@@ -50,16 +50,15 @@
                 @*funcionario autenticado tem permissão de:*@
                 @*@if (User.IsInRole("Funcionarios"))
                 {*@
-                        @*<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestor<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Listar Alunos", "Lista", "Alunos")</li>
-                            <li>@Html.ActionLink("Alunos Inscritos", "Lista", "Inscricao")</li>
-                            <li>@Html.ActionLink("Tipo do Curso", "Index", "Cursos")</li>
+                        <li>@Html.ActionLink("Listar Alunos", "Lista", "PotencialAluno")</li>
+                        <li>@Html.ActionLink("Alterar Password", "Index", "Manage")</li>    
                            
                         </ul>
                         </li>
-                @*}*@*
+                @*}*@
                           
                 </ul>
 

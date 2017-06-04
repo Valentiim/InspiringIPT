@@ -31,7 +31,7 @@ namespace InspiringIPT.Models
         // **************************
         // criar a chave forasteira, e cria um atributo
         // relaciona o objeto Cursos com um objeto Área
-        [Display(Name = "Áreas:")]
+        [Display(Name = "Àrea de Interesse:")]
         public int AreaFK { get; set; }
         public virtual Areas Areas { get; set; }
 

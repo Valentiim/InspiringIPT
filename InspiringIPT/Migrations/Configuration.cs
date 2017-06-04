@@ -91,10 +91,10 @@ namespace InspiringIPT.Migrations
             ////adiciona os Potenciais Alunos
             var potencialaluno = new List<PotencialAluno>
             {
-                new PotencialAluno {AlunoID=1, NomeCompleto="Arruá Valentim Afonso",Email="arrua.afonso@gmail.com",Concelho="Tomar",DataNascimento = new DateTime(1999,02,04),Contacto="967325844",Genero="Masculino", DataInscricao = new DateTime(2017,02,04),HabAcademicas="Licenciatura", AreasFK =  1,  CursosFK = 1, TiposCursosFK= 1},
-                new PotencialAluno {AlunoID=2, NomeCompleto="João Gomes Cravid",Email="jgomesc@gmail.com",Concelho="Tomar",DataNascimento = new DateTime(2000,02,04),Contacto="910202099",Genero="Masculino", DataInscricao = new DateTime(2017,02,04),HabAcademicas="Licenciatura",  AreasFK =  4, CursosFK = 2, TiposCursosFK= 3},
-                new PotencialAluno {AlunoID=3, NomeCompleto="Paulo Duque Júnior",Email="pauloj@gmail.com",Concelho="Tomar",DataNascimento = new DateTime(2001,02,04),Contacto="967386733",Genero="Masculino", DataInscricao = new DateTime(2017,02,04),HabAcademicas="Licenciatura",  AreasFK =  2, CursosFK = 3, TiposCursosFK= 2},
-                new PotencialAluno {AlunoID=4, NomeCompleto="Ana Maria Conceição Lima",Email="a.lima@gmail.com",Concelho="Tomar",DataNascimento = new DateTime(1988,02,04),Contacto="917834672",Genero="Feminino", DataInscricao = new DateTime(2017,02,04),HabAcademicas="TeSPs",  AreasFK =  3, CursosFK = 4, TiposCursosFK= 4}
+                //new PotencialAluno {AlunoID=1, NomeCompleto="Arruá Valentim Afonso",Email="arrua.afonso@gmail.com",Concelho="Tomar",DataNascimento = new DateTime(1999,02,04),Contacto="967325844",Genero="Masculino", DataInscricao = new DateTime(2017,02,04),HabAcademicas="Licenciatura", AreasFK =  1,  CursosFK = 1, TiposCursosFK= 1},
+                //new PotencialAluno {AlunoID=2, NomeCompleto="João Gomes Cravid",Email="jgomesc@gmail.com",Concelho="Tomar",DataNascimento = new DateTime(2000,02,04),Contacto="910202099",Genero="Masculino", DataInscricao = new DateTime(2017,02,04),HabAcademicas="Licenciatura",  AreasFK =  4, CursosFK = 2, TiposCursosFK= 3},
+                //new PotencialAluno {AlunoID=3, NomeCompleto="Paulo Duque Júnior",Email="pauloj@gmail.com",Concelho="Tomar",DataNascimento = new DateTime(2001,02,04),Contacto="967386733",Genero="Masculino", DataInscricao = new DateTime(2017,02,04),HabAcademicas="Licenciatura",  AreasFK =  2, CursosFK = 3, TiposCursosFK= 2},
+                //new PotencialAluno {AlunoID=5, NomeCompleto="Ana Maria Conceição Lima",Email="a.lima@gmail.com",Concelho="Tomar",DataNascimento = new DateTime(1988,02,04),Contacto="917834672",Genero="Feminino", DataInscricao = new DateTime(2017,02,04),HabAcademicas="TeSPs",  AreasFK =  3, CursosFK = 4, TiposCursosFK= 4}
             };
             potencialaluno.ForEach(pa => context.PotencialAluno.AddOrUpdate(p => p.NomeCompleto, pa));
             context.SaveChanges();

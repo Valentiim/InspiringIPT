@@ -15,12 +15,14 @@ namespace InspiringIPT.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: PotencialAluno
-        public ActionResult Index()
+        public ActionResult Lista()
         {
             var potencialAluno = db.PotencialAluno.Include(p => p.Area).Include(p => p.Curso).Include(p => p.TipoC);
             return View(potencialAluno.ToList());
+           
         }
 
+        
         // GET: PotencialAluno/Details/5
         public ActionResult Details(int? id)
         {
@@ -54,10 +56,11 @@ namespace InspiringIPT.Controllers
         {
 
             if (ModelState.IsValid)
-            {
+            {  // adiciona o objeto 'Cursos' a base de dados
                 db.PotencialAluno.Add(potencialAluno);
+                //torna a definitiva a adição
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Lista");
             }
 
             ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea", potencialAluno.AreasFK);
@@ -95,7 +98,7 @@ namespace InspiringIPT.Controllers
             {
                 db.Entry(potencialAluno).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Lista");
             }
             ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea", potencialAluno.AreasFK);
             ViewBag.CursosFK = new SelectList(db.Cursos, "CursoID", "NomeCurso", potencialAluno.CursosFK);
@@ -126,7 +129,7 @@ namespace InspiringIPT.Controllers
             PotencialAluno potencialAluno = db.PotencialAluno.Find(id);
             db.PotencialAluno.Remove(potencialAluno);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Lista");
         }
 
         protected override void Dispose(bool disposing)

@@ -35,7 +35,7 @@ namespace InspiringIPT.Models
         //***********************************************************************
         // definição da chave forasteira (FK) que referencia a classe Tipo do Curso
         //***********************************************************************
-        [Display(Name = "Tipo do Curso")]
+        [Display(Name = "Tipo de Curso")]
         public int TipoCursoFK { get; set; }
         public TipoCurso TipoCurso { get; set; }
 

@@ -345,6 +345,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Escolas.cs" />
     <Compile Include="Models\OutrosCursos.cs" />
     <Compile Include="Models\PotencialAluno.cs" />
     <Compile Include="Models\Areas.cs" />
@@ -634,7 +635,7 @@
     <Content Include="Views\PotencialAluno\Delete.cshtml" />
     <Content Include="Views\PotencialAluno\Details.cshtml" />
     <Content Include="Views\PotencialAluno\Edit.cshtml" />
-    <Content Include="Views\PotencialAluno\Index.cshtml" />
+    <Content Include="Views\PotencialAluno\Lista.cshtml" />
     <Content Include="Views\Home\Inscricao.cshtml" />
   </ItemGroup>
   <ItemGroup>

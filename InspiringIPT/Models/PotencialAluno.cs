@@ -42,9 +42,11 @@ namespace InspiringIPT.Models
         [RegularExpression("[0-9]{9}", ErrorMessage = "O Contacto é composto por 9 caracteres Numéricos")]
         public string Contacto { get; set; }
 
-        [Display(Name = "Género:")]
+        [Required]
+        [StringLength(1)]
+        [Display(Name = "Gênero:")]
         public string Genero { get; set; }
-
+       
         [Column(TypeName = "date")]// formata o tipo de dados na BD
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DataInscricao { get; set; }  // o '?' torna o preenchimento do atributo facultativo

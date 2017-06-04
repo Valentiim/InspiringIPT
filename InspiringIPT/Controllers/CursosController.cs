@@ -37,7 +37,7 @@ namespace InspiringIPT.Controllers
         }
 
         // GET: Cursos/Create
-        //[Authorize(Roles = "Funcionarios")]
+        //[Authorize(Roles = "Gestores")]
         public ActionResult Create()
         {
             return View();
@@ -48,7 +48,7 @@ namespace InspiringIPT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Funcionarios")]
+        //[Authorize(Roles = "Gestores")]
         public ActionResult Create([Bind(Include = "CursoID,NomeCurso,SiglaCurso,Descricao,AreaFK,TipoCursoFK,EscolaFK")] Cursos cursos)
         {
             if (ModelState.IsValid)
