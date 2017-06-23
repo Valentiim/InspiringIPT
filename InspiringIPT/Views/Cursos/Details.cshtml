@@ -1,66 +1,64 @@
 ﻿@model InspiringIPT.Models.Cursos
 
-@{
-    ViewBag.Title = "Detalhes do Curso";
-}
+<div class="row">
+    <div class="col-sm-14" style="background-color:lavenderblush;">
+        <h2 class="page-header">@ViewBag.Title <medium> Detalhes do Curso <i class="glyphicon glyphicon-education"></i></medium></h2>
+    </div>
+    <div class="col-sm-14" style="background-color:lavender">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NomeCurso)
+            </dt>
 
-<h2>Detalhes do curso</h2>
+            <dd>
+                @Html.DisplayFor(model => model.NomeCurso)
+            </dd>
 
-<div>
-    <h4>Cursos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeCurso)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.SiglaCurso)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NomeCurso)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.SiglaCurso)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SiglaCurso)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SiglaCurso)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.AreaFK)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.AreaFK)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AreaFK)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoCursoFK)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AreaFK)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TipoCursoFK)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoCursoFK)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.EscolaFK)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TipoCursoFK)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EscolaFK)
+            </dd>
+        </dl>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EscolaFK)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EscolaFK)
-        </dd>
-
-    </dl>
+    <p>
+        @Html.ActionLink("Editar Curso", "Edit", new { id = Model.CursoID }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Voltar ao cursos", "Index", "", new { @class = "btn btn-info" })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Editar Curso", "Edit", new { id = Model.CursoID }, new { @class = "btn btn-warning" })
-    @Html.ActionLink("Voltar ao cursos", "Index", "", new { @class = "btn btn-info" })
-</p>
+
