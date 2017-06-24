@@ -34,22 +34,8 @@
                     <li>@Html.ActionLink("Agenda", "Agenda", "Home")</li>
                     <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
                    
-                @*aluno autenticado tem permissão de:*@
-                @*@if (User.IsInRole("Colaboradores"))
-                {
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Alunos<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Inscrever", "CriarInscricao", "Inscricao")</li>
-                            <li>@Html.ActionLink("Alterar Perfil", "Editar", "PotencialAluno")</li>
-                            <li>@Html.ActionLink("Alterar Password", "Index", "Manage")</li>
-                        </ul>
-                    </li>
-                }
-
-                @*funcionario autenticado tem permissão de:*@
-                @*@if (User.IsInRole("Funcionarios"))
-                {*@
+              @*@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+              {*@
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestor<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -58,8 +44,8 @@
                            
                         </ul>
                         </li>
-                @*}*@
-                          
+              @*}*@
+
                 </ul>
 
                 @Html.Partial("_LoginPartial")
@@ -81,6 +67,7 @@
     @Scripts.Render("~/Scripts/bootstrap-datetimepicker.js")
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/Scripts/Apoio.js")
+    @Scripts.Render("~/Scripts/jspdf.js")
   
 </body>
 </html>

@@ -29,31 +29,6 @@
             <dd>
                 @Html.DisplayFor(model => model.TipoC.Tipo)
             </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CursoID)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CursoID)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.AreaID)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.AreaID)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.TipoID)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.TipoID)
-            </dd>
-
             <dt>
                 @Html.DisplayNameFor(model => model.NomeCompleto)
             </dt>
@@ -121,8 +96,8 @@
     </div>
     <div class="btn btn-secondary text-danger" style="height:40px">
         <p>
-            @Html.ActionLink("Editar", "Edit", new { id = Model.AlunoID })|
-            @Html.ActionLink("Listar os Potenciais Alunos", "Lista")
+            @Html.ActionLink("Editar", "Edit", new { id = Model.AlunoID }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Listar os Potenciais Alunos", "Lista", "", new { @class = "btn btn-primary" })
         </p>
         </div>
     </div>

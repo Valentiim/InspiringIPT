@@ -69,8 +69,7 @@ namespace InspiringIPT.Models
         [ForeignKey("TipoC")]
         [Display(Name = "Tipos de Cursos:")]
         public int TiposCursosFK { get; set; }
-
-        //public string UserID { get; set; }
+        public string UserID { get; set; }
 
         //herança
         public virtual ICollection<Cursos> ListaCursosAreas { get; set; }//associados o objeto potencial aluno existe um objeto Curso

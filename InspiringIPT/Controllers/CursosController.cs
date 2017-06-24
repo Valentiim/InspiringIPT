@@ -10,12 +10,14 @@ using InspiringIPT.Models;
 
 namespace InspiringIPT.Controllers
 {
+    [Authorize] //força a que só os utilizadores AUTENTICADOS consigam aceder aos metodos desta classe, aplica a todos os métodos
     public class CursosController : Controller
     {
         //Objeto que referencia a nossa bases de dados "db"
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Cursos
+        [AllowAnonymous] //permite o acesso de UTILIZADORES ANÓNIMOS aos conteúdos deste método
         public ActionResult Index()
         {
             return View(db.Cursos.OrderByDescending(m=> m.NomeCurso).ToList());

@@ -3,12 +3,33 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
 
 namespace InspiringIPT.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+       
+    
+        public string numColaborador { get; set; }
+
+  
+      
+        public string NomeProprio { get; set; }
+
+       
+        
+        public string Apelido { get; set; }
+
+       
+    
+        public string Localidade { get; set; }
+      
+       
+   
+        public string Contacto { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -29,7 +50,9 @@ namespace InspiringIPT.Models
         {
             return new ApplicationDbContext();
         }
-       
+        //**************************
+        // adicionar as instruções para criar as 'tabelas'
+        // o tipo DbSet para as tabelas. E <PotencialAluno> quer dizer uma coleção
         public virtual DbSet<PotencialAluno> PotencialAluno { get; set; }
         public virtual DbSet<Cursos> Cursos { get; set; }
         public virtual DbSet<Areas> Areas { get; set; }
@@ -38,9 +61,8 @@ namespace InspiringIPT.Models
         public virtual DbSet<OutrasAreas> OutrasAreas { get; set; }
         public virtual DbSet<OutrosCursos> OutrosCursos { get; set; }
 
+        public System.Data.Entity.DbSet<InspiringIPT.Models.ApplicationUser> ApplicationUsers { get; set; }
 
-
-
-
+       
     }
 }
