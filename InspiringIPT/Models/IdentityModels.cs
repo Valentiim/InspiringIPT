@@ -12,24 +12,6 @@ namespace InspiringIPT.Models
     {
        
     
-        public string numColaborador { get; set; }
-
-  
-      
-        public string NomeProprio { get; set; }
-
-       
-        
-        public string Apelido { get; set; }
-
-       
-    
-        public string Localidade { get; set; }
-      
-       
-   
-        public string Contacto { get; set; }
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -60,9 +42,8 @@ namespace InspiringIPT.Models
         public virtual DbSet<TipoCurso> TipoCurso { get; set; }
         public virtual DbSet<OutrasAreas> OutrasAreas { get; set; }
         public virtual DbSet<OutrosCursos> OutrosCursos { get; set; }
+        public virtual DbSet<Colaboradores> Colaboradores { get; set; }                       
 
-        public System.Data.Entity.DbSet<InspiringIPT.Models.ApplicationUser> ApplicationUsers { get; set; }
-
-       
+   
     }
 }

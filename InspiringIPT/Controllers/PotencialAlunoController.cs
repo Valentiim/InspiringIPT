@@ -11,7 +11,7 @@ using InspiringIPT.Models;
 namespace InspiringIPT.Controllers
 {
     //força a que só os utilizadores AUTENTICADOS consigam aceder aos metodos desta classe, aplica a todos os métodos
-    [Authorize]
+    //[Authorize]
     public class PotencialAlunoController : Controller
     {
         //onde tem todos os objetos referenciados a nossa bases de dados 
@@ -21,20 +21,20 @@ namespace InspiringIPT.Controllers
         // [Authorize(Roles = "Gestores")]
         public ActionResult Lista()
         {
-            // mostrar os dados de todos os DONOS apenas aos 
+           
             // utilizadores de perfil 'Funcionario' ou
             // perfil 'Veterinário'
-            if (User.IsInRole("Colaboradores") ||
-               User.IsInRole("Gestores"))
-            {
-                var potencialAluno = db.PotencialAluno.Include(p => p.Area).Include(p => p.Curso).Include(p => p.TipoC).OrderByDescending(p => p.DataInscricao); ;
+            //if (User.IsInRole("Colaboradores") ||
+            //   User.IsInRole("Gestores"))
+            //{
+                var potencialAluno = db.PotencialAluno.Include(p => p.Area).Include(p => p.Curso).Include(p => p.TipoC).OrderByDescending(p => p.DataInscricao);
                 return View(potencialAluno.ToList());
 
             }
-            return View(db.PotencialAluno.
-           Where(d => d.NomeCompleto == User.Identity.Name).
-           ToList());
-        }
+        //    return View(db.PotencialAluno.
+        //   Where(d => d.NomeCompleto == User.Identity.Name).
+        //   ToList());
+        //}
 
         // GET: PotencialAluno/Details/5
         // [Authorize(Roles = "Gestores")]
@@ -42,12 +42,12 @@ namespace InspiringIPT.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Lista");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PotencialAluno potencialAluno = db.PotencialAluno.Find(id);
             if (potencialAluno == null)
             {
-                return RedirectToAction("Lista");
+                return HttpNotFound();
             }
             return View(potencialAluno);
         }
@@ -89,16 +89,17 @@ namespace InspiringIPT.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Lista");
+                return HttpNotFound();
             }
             PotencialAluno potencialAluno = db.PotencialAluno.Find(id);
             if (potencialAluno == null)
             {
-                return RedirectToAction("Lista");
+                return HttpNotFound();
             }
             ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea", potencialAluno.AreasFK);
             ViewBag.CursosFK = new SelectList(db.Cursos, "CursoID", "NomeCurso", potencialAluno.CursosFK);
             ViewBag.TiposCursosFK = new SelectList(db.TipoCurso, "TipoID", "Tipo", potencialAluno.TiposCursosFK);
+
             return View(potencialAluno);
         }
 

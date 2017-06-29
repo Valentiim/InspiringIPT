@@ -28,7 +28,7 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.HabAcademicas)
-                </th>    
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Curso.NomeCurso)
                 </th>
@@ -37,11 +37,11 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Area.NomeArea)
-                </th> 
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DataInscricao)
                 </th>
-               
+
             </tr>
 
             @foreach (var item in Model)
@@ -81,11 +81,11 @@
                         @Html.DisplayFor(modelItem => item.DataInscricao)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "Edit", new { id = item.AlunoID }, new { @class = "btn btn-warning"  , @style = "height:30px;width:80px" })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.AlunoID }, new { @class = "btn btn-warning", @style = "height:30px;width:80px" })
                         @Html.ActionLink("Detalhes", "Details", new { id = item.AlunoID }, new { @class = "btn btn-info", @style = "height:30px;width:80px" })
                     </td>
                 </tr>
             }
         </table>
     </div>
- </div>
+</div>

@@ -51,6 +51,7 @@ namespace InspiringIPT.Models
     {
         [Required]
         [Display(Name = "E-mail")]
+
         [EmailAddress]
         public string Email { get; set; }
 
@@ -71,7 +72,7 @@ namespace InspiringIPT.Models
         public string Email { get; set; }
 
         [Required]
-     //   [StringLength(100, ErrorMessage = "A {0} deve ter de pelo menos {2} caracteres.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A {0} deve ter de pelo menos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -80,26 +81,6 @@ namespace InspiringIPT.Models
         [Display(Name = "Confirmar password")]
         [Compare("Password", ErrorMessage = "As Passwords Não Coincide")]
         public string ConfirmPassword { get; set; }
-
-        [Required]
-        [Display(Name = "Número Colaborador: ")]
-        public string numColaborador { get; set; }
-
-        [Required]
-        [Display(Name = "Nome: ")]
-        public string NomeProprio { get; set; }
-
-        [Required]
-        [Display(Name = "Apelido: ")]
-        public string Apelido { get; set; }
-
-        [Required]
-        [Display(Name = "Localidade: ")]
-        public string Localidade { get; set; }
-        [Required]
-        [Display(Name = "Telemóvel: ")]
-        [RegularExpression("[0-9]{9}", ErrorMessage = "O Contacto é composto por 9 caracteres Numéricos")]
-        public string Contacto { get; set; }
     }
 
     public class ResetPasswordViewModel

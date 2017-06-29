@@ -1,0 +1,46 @@
+﻿@model InspiringIPT.Models.Colaboradores
+
+@{
+    ViewBag.Title = "Perfil";
+}
+
+<div class="row">
+   
+
+    <div class="col-md-6" style="text-align:justify">
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NomeProprio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NomeProprio) @Html.DisplayFor(model => model.Apelido)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NIF)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NIF)
+            </dd>
+
+            <dd>
+             @Html.DisplayFor(model => model.Localidade)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Contacto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Contacto)
+            </dd>
+        </dl>
+        <div class="col-md-6 col-md-offset-1">
+            @Html.ActionLink("Alterar Perfil do Cliente", "Editar", "", new { @class = "btn btn-warning" })
+            @Html.ActionLink("Ver Clientes", "Listagem", "", new { @class = "btn btn-info" })
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<InspiringIPT.Models.ListaColaboradores>
+
+@{
+    ViewBag.Title = "Listagem";
+}
+<div class="row">
+    
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.NIF)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.Contacto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EMAIL)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome) @Html.DisplayFor(modelItem => item.Apelido)
+                    </td>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Localidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NIF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contacto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMAIL)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Alterar", "Edit", new { id = item.ColaboradorID }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.ColaboradorID }, new { @class = "btn btn-info" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

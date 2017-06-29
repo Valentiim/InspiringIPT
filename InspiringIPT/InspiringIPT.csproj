@@ -336,6 +336,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ColaboradoresController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -345,7 +346,10 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Colaboradores.cs" />
     <Compile Include="Models\Escolas.cs" />
+    <Compile Include="Models\ListaColaboradores.cs" />
+    <Compile Include="Models\Listagem.cs" />
     <Compile Include="Models\OutrosCursos.cs" />
     <Compile Include="Models\PotencialAluno.cs" />
     <Compile Include="Models\Areas.cs" />
@@ -364,6 +368,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-InspiringIPT-20170328012618.mdf" />
+    <Content Include="App_Data\aspnet-InspiringIPT-20170328012618_log.ldf">
+      <DependentUpon>aspnet-InspiringIPT-20170328012618.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\AngleSharp.dll" />
     <Content Include="bin\AngleSharp.xml" />
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -633,14 +641,18 @@
     <Content Include="Views\PotencialAluno\Edit.cshtml" />
     <Content Include="Views\PotencialAluno\Lista.cshtml" />
     <Content Include="Views\Home\Inscricao.cshtml" />
+    <Content Include="Views\Colaboradores\Create.cshtml" />
+    <Content Include="Views\Colaboradores\Details.cshtml" />
+    <Content Include="Views\Colaboradores\Edit.cshtml" />
+    <Content Include="Views\Colaboradores\Perfil.cshtml" />
+    <Content Include="Views\Colaboradores\Listagem.cshtml" />
+    <Content Include="Views\Colaboradores\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
