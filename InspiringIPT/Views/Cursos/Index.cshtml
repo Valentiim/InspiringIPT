@@ -17,20 +17,16 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Descricao)
                 </th>
-                <th></th>
-
-                @if (User.IsInRole("Colaboradores"))
-            {
                     <th>
                         @Html.DisplayNameFor(model => model.AreaFK)
                     </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.TipoCursoFK)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.EscolaFK)
-                        </th>
-                }
+                    <th>
+                        @Html.DisplayNameFor(model => model.TipoCursoFK)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EscolaFK)
+                    </th>
+          
                 <th></th>
             </tr>
 
@@ -47,34 +43,31 @@
                         @Html.DisplayFor(modelItem => item.Descricao)
                     </td>
 
-                    @if (User.IsInRole("Colaboradores"))
+                    @if (User.Identity.IsAuthenticated)
                     {
                         <td>
                             @Html.DisplayFor(modelItem => item.AreaFK)
                         </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TipoCursoFK)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EscolaFK)
-                            </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoCursoFK)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EscolaFK)
+                        </td>
                     }
-                    @*@if (User.IsInRole("Colaboradores"))
-                        {*@
-                    <td>
-                        @Html.ActionLink("Alterar", "Edit", new { id = item.CursoID }, new { @class = "btn btn-warning" })  @Html.ActionLink("Detalhes", "Details", new { id = item.CursoID }, new { @class = "btn btn-info" })
-
-                    </td>
-                    @*}*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td>
+                            @Html.ActionLink("Atualizar os Dados", "Edit", new { id = item.CursoID }, new { @class = "btn btn-danger" })
+                        </td>
+                    }
                 </tr>
             }
         </table>
-        @*@if (User.IsInRole("Colaboradores"))
-            {*@
-
-        @Html.ActionLink("Adicionar novo Curso", "Create", "", new { @class = "btn btn-success" })
-
-        @*}*@
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("Adicionar novo Curso", "Create", "", new { @class = "btn btn-success" })
+        }
     </div>
 </div>
 

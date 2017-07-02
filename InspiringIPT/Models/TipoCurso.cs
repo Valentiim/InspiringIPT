@@ -19,7 +19,7 @@ namespace InspiringIPT.Models
         }
         [Key]
         public int TipoID { get; set; }
-        [Display(Name = "Tipo de Curso: ")]
+        [Display(Name = "Tipo: ")]
         public string Tipo { get; set; }
 
         // especificar que um Tipo de Curso tem nenhum ou muitos Cursos

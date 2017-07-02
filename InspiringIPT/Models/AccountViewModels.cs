@@ -5,8 +5,8 @@ namespace InspiringIPT.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
-        [Display(Name = "E-mail")]
+        
+        [Display(Name = "E-mail:")]
         public string Email { get; set; }
     }
 
@@ -42,22 +42,21 @@ namespace InspiringIPT.Models
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "O {0} é obrigatório. Por favor, especifique-o...")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "E-mail")]
-
+        [Required(ErrorMessage = "O {0} é obrigatório. Por favor, especifique-o...")]
+        [Display(Name = "E-mail:")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O {0} é obrigatório. Por favor, especifique-o...")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Password:")]
         public string Password { get; set; }
 
         [Display(Name = "Relembrar-me?")]
@@ -66,13 +65,13 @@ namespace InspiringIPT.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "O {0} é obrigatório. Por favor, especifique-o...")]
         [EmailAddress]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "A {0} deve ter de pelo menos {2} caracteres.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A {0} deve ter de pelo menos {2} caracteres.", MinimumLength = 8)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

@@ -16,7 +16,7 @@ namespace InspiringIPT.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Colaboradores
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Perfil()
         {
             var userid = User.Identity.GetUserId();
@@ -24,7 +24,7 @@ namespace InspiringIPT.Controllers
             ViewBag.colaborador = user;
             return View(user);
         }
-        // [Authorize(Roles = "Colaboradores")]
+        // [Authorize(Roles = "Gestores")]
         [AllowAnonymous]
         public ActionResult Listagem()
         {
@@ -36,6 +36,7 @@ namespace InspiringIPT.Controllers
                     ColaboradorID = c.ColaboradorID,
                     Nome = c.NomeProprio,
                     Apelido = c.Apelido,
+                    Localidade = c.Localidade,
                     Contacto = c.Contacto,
                     NIF = c.NIF,
                     EMAIL = u.Email,
@@ -50,11 +51,8 @@ namespace InspiringIPT.Controllers
             return RedirectToAction("Perfil");
         }
 
-
-    
-
         // GET: Colaboradores/Details/5
-       // [Authorize(Roles = "Funcionarios")]
+        // [Authorize(Roles = "Gestores")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -72,15 +70,18 @@ namespace InspiringIPT.Controllers
         // GET: Colaboradores/Create
         public ActionResult Create()
         {
-            return PartialView();
+            return View();
         }
 
         [HttpPost]
+        //[Authorize(Roles = "Gestores")]
+       // [ValidateAntiForgeryToken]
         public ActionResult Create(Colaboradores model)
         {
             var user = User.Identity.GetUserId();
             var newId = db.Colaboradores.Select(x => x.ColaboradorID).Count() + 1;
             var colaborador = new Colaboradores { UserID = user, ColaboradorID= newId, NomeProprio=model.NomeProprio, Apelido=model.Apelido, Contacto=model.Contacto, Localidade=model.Localidade, NIF=model.NIF };
+            //Guarda os dados do colaborador na Base de Dados
             db.Colaboradores.Add(colaborador);
             db.SaveChanges();
 
@@ -88,7 +89,7 @@ namespace InspiringIPT.Controllers
         }
 
         // GET: Colaboradores/Edit/5
-        //  [Authorize(Roles = "Funcionarios")]
+        //[Authorize(Roles = "Gestores")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -109,7 +110,7 @@ namespace InspiringIPT.Controllers
         //  [Authorize(Roles = "Colaboradores")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClienteID,NIF,NomeProprio,Apelido,Localidade,Contacto,UserID")] Colaboradores colaboradores)
+        public ActionResult Edit([Bind(Include = "ColaboradorID,NIF,NomeProprio,Apelido,Localidade,Contacto,UserID")] Colaboradores colaboradores)
         {
            
             if (ModelState.IsValid)
@@ -142,7 +143,7 @@ namespace InspiringIPT.Controllers
         // POST: Colaboradores/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-      //  [Authorize(Roles = "Funcionarios")]
+      // [Authorize(Roles = "Gestores")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Editar([Bind(Include = "ColaboradorID,NIF,NomeProprio,Apelido,Localidade,Contacto,UserID")] Colaboradores colaboradores)

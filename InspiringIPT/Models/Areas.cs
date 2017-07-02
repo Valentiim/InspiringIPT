@@ -19,7 +19,7 @@ namespace InspiringIPT.Models
         }
         [Key]
         public int AreaID { get; set; }
-        [Display(Name = "Àrea de Interesse:")]
+        [Display(Name = "Àrea:")]
         public string NomeArea { get; set; }
 
         // especificar que uma Área tem um ou muitos Cursos

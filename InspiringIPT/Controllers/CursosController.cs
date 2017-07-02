@@ -20,7 +20,11 @@ namespace InspiringIPT.Controllers
         [AllowAnonymous] //permite o acesso de UTILIZADORES ANÓNIMOS aos conteúdos deste método
         public ActionResult Index()
         {
+            ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea");
+            ViewBag.TiposCursosFK = new SelectList(db.TipoCurso, "TipoID", "Tipo");
+            ViewBag.EscolasFK = new SelectList(db.Escola, "EscolaID", "NomeEscola");
             return View(db.Cursos.OrderByDescending(m=> m.NomeCurso).ToList());
+
         }
 
         // GET: Cursos/Details/5
@@ -42,6 +46,9 @@ namespace InspiringIPT.Controllers
         //[Authorize(Roles = "Gestores")]
         public ActionResult Create()
         {
+            ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea");
+            ViewBag.TiposCursosFK = new SelectList(db.TipoCurso, "TipoID", "Tipo");
+            ViewBag.EscolasFK = new SelectList(db.Escola, "EscolaID", "NomeEscola");
             return View();
         }
 
@@ -50,8 +57,8 @@ namespace InspiringIPT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Gestores")]
-        public ActionResult Create([Bind(Include = "CursoID,NomeCurso,SiglaCurso,Descricao,AreaFK,TipoCursoFK,EscolaFK")] Cursos cursos)
+      //  [Authorize(Roles = "Gestores")]
+        public ActionResult Create([Bind(Include = "CursoID,AreaID,TipoID,EscolaID,NomeCurso,SiglaCurso,Descricao,AreaFK,TipoCursoFK,EscolaFK")] Cursos cursos)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +68,9 @@ namespace InspiringIPT.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea", cursos.AreaFK);
+            ViewBag.EscolasFK = new SelectList(db.Escola, "EscolaID", "NomeEscola", cursos.EscolaFK);
+            ViewBag.TiposCursosFK = new SelectList(db.TipoCurso, "TipoID", "Tipo", cursos.TipoCursoFK);
 
             return View(cursos);
         }
@@ -77,6 +87,9 @@ namespace InspiringIPT.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea");
+            ViewBag.TiposCursosFK = new SelectList(db.TipoCurso, "TipoID", "Tipo");
+            ViewBag.EscolasFK = new SelectList(db.Escola, "EscolaID", "NomeEscola");
             return View(cursos);
         }
 
@@ -85,7 +98,7 @@ namespace InspiringIPT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Funcionarios")]
+        //[Authorize(Roles = "Gestores")]
         public ActionResult Edit([Bind(Include = "CursoID,NomeCurso,SiglaCurso,Descricao,AreaFK,TipoCursoFK,EscolaFK")] Cursos cursos)
         {
             if (ModelState.IsValid)
@@ -95,6 +108,10 @@ namespace InspiringIPT.Controllers
 
                 return RedirectToAction("Index");
             }
+            ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea", cursos.AreaFK);
+            ViewBag.EscolasFK = new SelectList(db.Escola, "EscolaID", "NomeEscola", cursos.EscolaFK);
+            ViewBag.TiposCursosFK = new SelectList(db.TipoCurso, "TipoID", "Tipo", cursos.TipoCursoFK);
+
             return View(cursos);
         }
 

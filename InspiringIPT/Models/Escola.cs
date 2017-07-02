@@ -18,7 +18,9 @@ namespace InspiringIPT.Models
         }
         [Key]
         public int EscolaID { get; set; }
+        [Display(Name = "Escola:")]
         public string NomeEscola { get; set; }
+        [Display(Name = "Sigla:")]
         public string SiglaEscola { get; set; }
 
         // especificar que uma Escola tem um ou muitos Cursos

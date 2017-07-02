@@ -21,7 +21,7 @@ namespace InspiringIPT.Models
 
         [Required (ErrorMessage ="Introduzir o seu nome completo")]
         //[RegularExpression("[A-ZÉÓÁÍÂ][a-záéíóúàèìòù]+(( [ed][aeo]?(s)?)?[ -'][A-ZÉÓÁÍÂ][a-záéíóúàèìòù]+){1, 4}")]
-        [Display(Name = "Nome Completo:")]
+        [Display(Name = "Nome:")]
         public string NomeCompleto { get; set; }
 
         [Required(ErrorMessage = "Introduzir um e-mail válido")]
@@ -32,19 +32,19 @@ namespace InspiringIPT.Models
         public string Concelho { get; set; }
 
         [Required]
-        [Display(Name = "Data de Nascimento")]
+        [Display(Name = "D.Nascimento:")]
         [Column(TypeName = "date")] // formata o tipo de dados na BD
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DataNascimento { get; set; } // o '?' torna o preenchimento do atributo facultativo
 
         [Required]
-        [Display(Name = "Telemóvel:")]
+        [Display(Name = "Contacto:")]
         [RegularExpression("[0-9]{9}", ErrorMessage = "O Contacto é composto por 9 caracteres Numéricos")]
         public string Contacto { get; set; }
 
         [Required]
         [StringLength(1)]
-        [Display(Name = "Gênero:")]
+        [Display(Name = "Sexo:")]
         public string Genero { get; set; }
        
         [Column(TypeName = "date")]// formata o tipo de dados na BD
@@ -52,7 +52,7 @@ namespace InspiringIPT.Models
         public DateTime? DataInscricao { get; set; }  // o '?' torna o preenchimento do atributo facultativo
 
         [Required]
-        [Display(Name = "Habilitações Académicas:")]
+        [Display(Name = "Habilitação:")]
         public string HabAcademicas { get; set; }
 
         public Cursos Curso { get; set; }
@@ -62,12 +62,12 @@ namespace InspiringIPT.Models
 
         public Areas Area { get; set; }
         [ForeignKey("Area")]
-        [Display(Name = "Areas:")]
+        [Display(Name = "Área:")]
         public int AreasFK { get; set; }
 
         public TipoCurso TipoC { get; set; }
         [ForeignKey("TipoC")]
-        [Display(Name = "Tipos de Cursos:")]
+        [Display(Name = "Tipo:")]
         public int TiposCursosFK { get; set; }
         public string UserID { get; set; }
 

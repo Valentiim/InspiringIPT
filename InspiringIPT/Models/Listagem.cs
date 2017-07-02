@@ -9,7 +9,7 @@ namespace InspiringIPT.Models
     public class Listagem
     {
 
-        [Display(Name = "Colaborador")]
+        [Display(Name = "Colaborador:")]
         public string Nome { get; set; }
         public string Apelido { get; set; }
     }   

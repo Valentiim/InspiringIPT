@@ -18,7 +18,7 @@ namespace InspiringIPT.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: PotencialAluno
-        // [Authorize(Roles = "Gestores")]
+       // [Authorize(Roles = "Colaboradores")]
         public ActionResult Lista()
         {
            
@@ -49,6 +49,9 @@ namespace InspiringIPT.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea", potencialAluno.AreasFK);
+            ViewBag.CursosFK = new SelectList(db.Cursos, "CursoID", "NomeCurso", potencialAluno.CursosFK);
+            ViewBag.TiposCursosFK = new SelectList(db.TipoCurso, "TipoID", "Tipo", potencialAluno.TiposCursosFK);
             return View(potencialAluno);
         }
 
