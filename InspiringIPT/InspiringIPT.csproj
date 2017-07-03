@@ -565,10 +565,17 @@
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1-vsdoc.js" />
+    <Content Include="Imags\alimentação.jpg" />
+    <Content Include="Imags\associativismo.jpg" />
+    <Content Include="Imags\biblioteca.jpg" />
     <Content Include="Imags\campos2.jpg" />
     <Content Include="Imags\campus_ipt.jpg" />
     <Content Include="Imags\cara_ipt2.jpg" />
-    <Content Include="Imags\wallpaper.jpg" />
+    <Content Include="Imags\cultura.jpg" />
+    <Content Include="Imags\desporto.jpg" />
+    <Content Include="Imags\logotipo.jpg" />
+    <Content Include="Imags\residência.jpg" />
+    <Content Include="Imags\wallpaperr.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />

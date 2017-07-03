@@ -27,23 +27,9 @@ namespace InspiringIPT.Controllers
 
         }
 
-        // GET: Cursos/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            Cursos cursos = db.Cursos.Find(id);
-            if (cursos == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            return View(cursos);
-        }
 
         // GET: Cursos/Create
-        //[Authorize(Roles = "Gestores")]
+        [Authorize(Roles = "Gestores")]
         public ActionResult Create()
         {
             ViewBag.AreasFK = new SelectList(db.Areas, "AreaID", "NomeArea");
@@ -57,7 +43,7 @@ namespace InspiringIPT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-      //  [Authorize(Roles = "Gestores")]
+        [Authorize(Roles = "Gestores")]
         public ActionResult Create([Bind(Include = "CursoID,AreaID,TipoID,EscolaID,NomeCurso,SiglaCurso,Descricao,AreaFK,TipoCursoFK,EscolaFK")] Cursos cursos)
         {
             if (ModelState.IsValid)
@@ -76,6 +62,7 @@ namespace InspiringIPT.Controllers
         }
 
         // GET: Cursos/Edit/5
+        [Authorize(Roles = "Gestores")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,7 +85,7 @@ namespace InspiringIPT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Gestores")]
+        [Authorize(Roles = "Gestores")]
         public ActionResult Edit([Bind(Include = "CursoID,NomeCurso,SiglaCurso,Descricao,AreaFK,TipoCursoFK,EscolaFK")] Cursos cursos)
         {
             if (ModelState.IsValid)

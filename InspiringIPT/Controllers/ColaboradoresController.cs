@@ -16,6 +16,7 @@ namespace InspiringIPT.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Colaboradores
+        [HttpGet]
         [Authorize]
         public ActionResult Perfil()
         {
@@ -24,7 +25,7 @@ namespace InspiringIPT.Controllers
             ViewBag.colaborador = user;
             return View(user);
         }
-        // [Authorize(Roles = "Gestores")]
+       // [Authorize(Roles = "Gestores")]
         [AllowAnonymous]
         public ActionResult Listagem()
         {

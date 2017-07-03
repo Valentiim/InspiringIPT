@@ -22,7 +22,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Inspiring IPTomar", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Inspiring IPTomar", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <a class="navbar-brand" rel="Index" href="Home" title="Inspiring IPTomar">
+                    <img style="max-width:90px; margin-top: -7px;"src="~/Imags/logotipo.jpg">
+                </a>
+           
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -33,29 +37,29 @@
                     <li>@Html.ActionLink("Notícias", "Noticia", "Home")</li>
                     <li>@Html.ActionLink("Agenda", "Agenda", "Home")</li>
 
-                    @*@if (User.IsInRole("Funcionarios"))*@
-
                         @*utilizador autenticado tem permissão de:*@
-                        @*@if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Colaborador<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Alterar Perfil", "Editar", "Colaboradores")</li>
-                                    <li>@Html.ActionLink("Alterar Password", "Index", "Manage")</li>
-                                </ul>
-                            </li>
-                            }*@
-
-                        @*gestores autenticado tem permissão de:*@
                         @if (User.IsInRole("Colaboradores"))
-
                         {
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Colaborador<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Listar Potenciais Alunos", "Lista", "PotencialAluno")</li>
+                                    <li>@Html.ActionLink("Alterar Perfil", "Editar", "Colaboradores")</li>
+                                    <li>@Html.ActionLink("Alterar Password", "Index", "Manage")</li>
+                                </ul>
+                            </li>                          
+                        }
+
+                        @*Colaboradores autenticado tem permissão de:*@
+                        @if (User.IsInRole("Gestores"))
+
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestor<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Listar Potenciais Alunos", "Lista", "PotencialAluno")</li>
                                     <li>@Html.ActionLink("Listar Colaboradores", "Listagem", "Colaboradores")</li>
+                                    <li>@Html.ActionLink("Alterar Perfil", "Editar", "Colaboradores")</li>
                                     <li>@Html.ActionLink("Alterar Password", "Index", "Manage")</li>
 
                                 </ul>
